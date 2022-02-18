@@ -88,7 +88,7 @@ public:
 
 private:
 	virtual void updateCurrent(GameTimer dt);
-	void updateChildren(GameTimer dt);
+	void updateChildren(const GameTimer dt);
 	virtual void drawCurrent() const;
 	void drawChildren() const;
 	virtual void buildCurrent();

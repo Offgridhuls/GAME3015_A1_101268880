@@ -79,6 +79,7 @@ void Game::OnResize()
 void Game::Update(const GameTimer& gt)
 {
 	OnKeyboardInput(gt);
+	mWorld.update(gt);
 	UpdateCamera(gt);
 
 	// Cycle through the circular frame resource array.

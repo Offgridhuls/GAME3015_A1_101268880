@@ -34,7 +34,9 @@ void SceneNode::Update(const GameTimer& dt)
 
 void SceneNode::move(float x, float y, float z)
 {
-
+	mWorldPosition.x += x;
+	mWorldPosition.y += y;
+	mWorldPosition.z += z;
 }
 
 XMFLOAT3 SceneNode::getWorldPosition() const
@@ -85,10 +87,9 @@ XMFLOAT4X4 SceneNode::getWorldTransform() const
 XMFLOAT4X4 SceneNode::getTransform() const
 {
 	XMFLOAT4X4 transform;
-	XMMATRIX T(XMMatrixRotationX(XMConvertToRadians(mWorldRotation.x)) *
+	XMMATRIX T(XMMatrixTranslation(mWorldPosition.x, mWorldPosition.y, mWorldPosition.z) * XMMatrixRotationX(XMConvertToRadians(mWorldRotation.x)) *
 		XMMatrixRotationY(XMConvertToRadians(mWorldRotation.y)) *
-			XMMatrixRotationZ(XMConvertToRadians(mWorldRotation.z)) *
-				XMMatrixTranslation(mWorldPosition.x, mWorldPosition.y, mWorldPosition.z) * 
+			XMMatrixRotationZ(XMConvertToRadians(mWorldRotation.z)) * 
 				XMMatrixScaling(mWorldScaling.x, mWorldScaling.y, mWorldScaling.z));
 
 	XMStoreFloat4x4(&transform, T);
