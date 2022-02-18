@@ -12,6 +12,14 @@ public:
 
 	void draw();
 
+	void loadTextures(Microsoft::WRL::ComPtr<ID3D12Device>& GameDevice,
+		Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList>& CommandList,
+		std::unordered_map<std::string, std::unique_ptr<Texture>>& GameTextures);
+	void buildMaterials(std::unordered_map<std::string, std::unique_ptr<Material>>& GameMaterials);
+	void buildShapeGeometry(Microsoft::WRL::ComPtr<ID3D12Device>& GameDevice,
+		Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList>& CommandList,
+		std::unordered_map<std::string, std::unique_ptr<MeshGeometry>>& GameGeometries);
+
 	void buildScene();
 
 

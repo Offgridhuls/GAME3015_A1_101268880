@@ -8,8 +8,8 @@ SpriteNode::SpriteNode(Game* game) : Entity(game)
 
 void SpriteNode::drawCurrent() const
 {
-	//render->World = getWorldTransform();
-	//render->NumFramesDirty++;
+	//mSpriteNodeRitem->World = getWorldTransform();
+	mSpriteNodeRitem->NumFramesDirty++;
 }
 
 void SpriteNode::buildCurrent()

@@ -1,9 +1,13 @@
 #pragma once
-#include <iostream>
 #include "Common/d3dApp.h"
+#include "Common/MathHelper.h"
+#include "Common/UploadBuffer.h"
+#include "Common/GeometryGenerator.h"
+#include "Common/Camera.h"
 #include "DirectXMath.h"
 #include <vector>
 #include <memory>
+#include "FrameResource.h"
 
 using Microsoft::WRL::ComPtr;
 using namespace DirectX;
