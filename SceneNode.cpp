@@ -98,7 +98,7 @@ XMFLOAT4X4 SceneNode::getTransform() const //Gets transform of object.
 }
 
 
-void SceneNode::updateChildren(GameTimer dt) //
+void SceneNode::updateChildren(GameTimer dt) //Updates children.
 {
 	for(Ptr& child : mChildren)
 	{
@@ -106,12 +106,12 @@ void SceneNode::updateChildren(GameTimer dt) //
 	}
 }
 
-void SceneNode::drawCurrent() const
+void SceneNode::drawCurrent() const //Does nothing.
 {
 	
 }
 
-void SceneNode::drawChildren() const
+void SceneNode::drawChildren() const //Draws children
 {
 	for(const Ptr& child : mChildren)
 	{
@@ -119,12 +119,12 @@ void SceneNode::drawChildren() const
 	}
 }
 
-void SceneNode::buildCurrent()
+void SceneNode::buildCurrent() //Does nothing.
 {
 
 }
 
-void SceneNode::buildChildren()
+void SceneNode::buildChildren() //Builds Children.
 {
 	for(const Ptr& child : mChildren)
 	{
@@ -132,13 +132,13 @@ void SceneNode::buildChildren()
 	}
 }
 
-void SceneNode::draw() const
+void SceneNode::draw() const //Draws Scenenode children.
 {
 	drawChildren();
 	drawCurrent();
 }
 
-void SceneNode::build()
+void SceneNode::build() //Builds Scenenode children.
 {
 	buildCurrent();
 	buildChildren();

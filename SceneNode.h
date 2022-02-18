@@ -51,55 +51,55 @@ struct RenderItem
 
 class Game;
 
-class SceneNode
+class SceneNode //Scene node class, initialize a Scenenode using this class.
 {
 public:
 	typedef std::unique_ptr<SceneNode> Ptr;
 
 public:
-	SceneNode(Game* game);
+	SceneNode(Game* game); //Scenenode Constructor
 
-	void attachChild(Ptr child);
-	Ptr detachChild(const SceneNode& node);
+	void attachChild(Ptr child); //Attaches specified child to parent object.
+	Ptr detachChild(const SceneNode& node);  //Detaches specified child from parent object.
 
-	XMFLOAT3 getWorldPosition() const;
-	void setWorldPosition(float x, float y, float z);
+	XMFLOAT3 getWorldPosition() const; //Get world position returns mWorldPosition.
+	void setWorldPosition(float x, float y, float z); //Sets world position.
 
-	XMFLOAT3 getWorldRotation() const;
-	void setWorldRotation(float x, float y, float z);
+	XMFLOAT3 getWorldRotation() const; // Get world rotation.
+	void setWorldRotation(float x, float y, float z); //Set world rotation.
 
-	XMFLOAT3 getWorldScale() const;
-	void setWorldScale(float x, float y, float z);
+	XMFLOAT3 getWorldScale() const; //Get world scale.
+	void setWorldScale(float x, float y, float z); //Set world scale.
 
-	XMFLOAT4X4 getWorldTransform() const;
-	XMFLOAT4X4 getTransform() const;
+	XMFLOAT4X4 getWorldTransform() const; //Gets world orientation. 
+	XMFLOAT4X4 getTransform() const; //Gets transform of object.
 
-	void Update(const GameTimer& dt);
-	void move(float x, float y, float z);
-	void draw() const;
+	void Update(const GameTimer& dt); //Update function of Scenenode.
+	void move(float x, float y, float z); //Move function of Scenenode-moves object by velocity.
+	void draw() const; 
 	void build();
 
 private:
-	virtual void updateCurrent(GameTimer dt);
-	void updateChildren(const GameTimer dt);
-	virtual void drawCurrent() const;
-	void drawChildren() const;
-	virtual void buildCurrent();
-	void buildChildren();
+	virtual void updateCurrent(GameTimer dt); 
+	void updateChildren(const GameTimer dt); //Updates children.
+	virtual void drawCurrent() const; //Does nothing.
+	void drawChildren() const; //Draws children
+	virtual void buildCurrent(); //Does nothing.
+	void buildChildren(); //Builds Children.
 
 protected:
 
-	Game* game;
+	Game* game; //Reference to game class.
 
-	RenderItem* renderer;
+	RenderItem* renderer; //Reference to renderer.
 
 private:
 
-	std::vector<Ptr> mChildren;
+	std::vector<Ptr> mChildren; //Children vector
 
-	SceneNode* mParent;
+	SceneNode* mParent; //Parent node.
 
-	XMFLOAT3 mWorldPosition;
-	XMFLOAT3 mWorldRotation;
-	XMFLOAT3 mWorldScaling;
+	XMFLOAT3 mWorldPosition; //World position.
+	XMFLOAT3 mWorldRotation; //World rotation.
+	XMFLOAT3 mWorldScaling; //World scaling.
 };
