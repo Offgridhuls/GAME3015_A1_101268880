@@ -16,13 +16,6 @@ using namespace DirectX::PackedVector;
 #pragma comment(lib, "d3dcompiler.lib")
 #pragma comment(lib, "D3D12.lib")
 
-//enum class RenderLayer : int
-//{
-//	Opaque = 0,
-//	Transparent = 1,
-//	Count
-//};
-
 struct RenderItem
 {
 	RenderItem() = default;
