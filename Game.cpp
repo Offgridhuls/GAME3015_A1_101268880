@@ -689,10 +689,10 @@ void Game::BuildRenderItems()
 {
 	mWorld.buildScene();
 
-	for (auto& e : mAllRitems)
-		mRitemLayer[(int)RenderLayer::Opaque].push_back(e.get());
-	for (auto& e : mAllRitems)
-		mRitemLayer[(int)RenderLayer::Transparent].push_back(e.get());
+	//for (auto& e : mAllRitems)
+	//	mRitemLayer[(int)RenderLayer::Opaque].push_back(e.get());
+	//for (auto& e : mAllRitems)
+	//	mRitemLayer[(int)RenderLayer::Transparent].push_back(e.get());
 }
 
 void Game::DrawRenderItems(ID3D12GraphicsCommandList* cmdList, const std::vector<RenderItem*>& ritems)

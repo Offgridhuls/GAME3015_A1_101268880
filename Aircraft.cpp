@@ -34,6 +34,6 @@ void Aircraft::buildCurrent()
 	renderer->IndexCount = render->Geo->DrawArgs["grid"].IndexCount;
 	renderer->StartIndexLocation = render->Geo->DrawArgs["grid"].StartIndexLocation;
 	renderer->BaseVertexLocation = render->Geo->DrawArgs["grid"].BaseVertexLocation;
-	mRitemLayer[(int)RenderLayer::Transparent].push_back(render.get());
+	game->mRitemLayer[(int)RenderLayer::Transparent].push_back(render.get());
 	game->mAllRitems.push_back(std::move(render));
 }

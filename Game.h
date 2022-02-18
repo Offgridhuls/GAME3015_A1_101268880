@@ -6,6 +6,7 @@
 #include "Aircraft.h"
 #include "FrameResource.h"
 #include "World.h"
+#include "RenderLayer.h"
 
 using Microsoft::WRL::ComPtr;
 using namespace DirectX;
@@ -61,6 +62,7 @@ public:
     std::unordered_map<std::string, ComPtr<ID3D12PipelineState>> mPSOs;
     std::vector<std::unique_ptr<RenderItem>> mAllRitems;
     std::vector<std::unique_ptr<RenderItem>>& getRenderItems();
+    std::vector<RenderItem*> mRitemLayer[(int)RenderLayer::Count];
 
 
 
@@ -84,7 +86,6 @@ private:
     // List of all the render items.
 
     // Render items divided by PSO.
-    std::vector<RenderItem*> mRitemLayer[(int)RenderLayer::Count];
 
     PassConstants mMainPassCB;
 

@@ -9,22 +9,22 @@ SpriteNode::SpriteNode(Game* game) : Entity(game)
 void SpriteNode::drawCurrent() const
 {
 	//mSpriteNodeRitem->World = getWorldTransform();
-	mSpriteNodeRitem->NumFramesDirty++;
+	//mSpriteNodeRitem->NumFramesDirty++;
 }
 
 void SpriteNode::buildCurrent()
 {
 	auto render = std::make_unique<RenderItem>();
-	render->World = getWorldTransform();
+	renderer = render.get();
+	renderer->World = getWorldTransform();
 	XMStoreFloat4x4(&render->TexTransform, XMMatrixScaling(10.0f, 10.0f, 10.0f));
-	render->Mat = game->mMaterials["Desert"].get();
-	render->Geo = game->mGeometries["shapeGeo"].get();
-	render->PrimitiveType = D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
-	render->IndexCount = render->Geo->DrawArgs["grid"].IndexCount;
-	render->StartIndexLocation = render->Geo->DrawArgs["grid"].StartIndexLocation;
-	render->BaseVertexLocation = render->Geo->DrawArgs["grid"].BaseVertexLocation;
-	//render->NumFramesDirty++;
-	//mSpriteNodeRitem = render.get();
-	mRitemLayer[(int)RenderLayer::Opaque].push_back(render.get());
+	renderer->ObjCBIndex = game->mAllRitems.size();
+	renderer->Mat = game->mMaterials["Desert"].get();
+	renderer->Geo = game->mGeometries["shapeGeo"].get();
+	renderer->PrimitiveType = D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+	renderer->IndexCount = render->Geo->DrawArgs["grid"].IndexCount;
+	renderer->StartIndexLocation = render->Geo->DrawArgs["grid"].StartIndexLocation;
+	renderer->BaseVertexLocation = render->Geo->DrawArgs["grid"].BaseVertexLocation;
+	game->mRitemLayer[(int)RenderLayer::Opaque].push_back(render.get());
 	game->mAllRitems.push_back(std::move(render));
 }

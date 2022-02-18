@@ -18,7 +18,7 @@ private:
 	Type mType;
 	std::string mSprite;
 
-	std::vector<RenderItem*> mRitemLayer[(int)RenderLayer::Count];
+	//std::vector<RenderItem*> mRitemLayer[(int)RenderLayer::Count];
 
 	virtual void drawCurrent() const;
 	virtual void buildCurrent();

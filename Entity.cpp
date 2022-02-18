@@ -1,10 +1,10 @@
 #include "Entity.h"
-Entity::Entity(Game* game) : SceneNode(game), mVelocity(0,0)
+Entity::Entity(Game* game) : SceneNode(game), mVelocity(0,0,0)
 {
 	
 }
 
-void Entity::setVelocity(XMFLOAT2 velocity)
+void Entity::setVelocity(XMFLOAT3 velocity)
 {
 	mVelocity = velocity;
 }
@@ -14,13 +14,14 @@ void Entity::setSpeed(float speed)
 	mSpeed = speed;
 }
 
-void Entity::setVelocity(float vx, float vy)
+void Entity::setVelocity(float vx, float vy, float vz)
 {
 	mVelocity.x = vx;
 	mVelocity.y = vy;
+	mVelocity.z = vz;
 }
 
-XMFLOAT2 Entity::getVelocity() const
+XMFLOAT3 Entity::getVelocity() const
 {
 	return mVelocity;
 }

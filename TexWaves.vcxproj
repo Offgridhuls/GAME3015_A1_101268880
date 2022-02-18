@@ -172,6 +172,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="FrameResource.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="RenderLayer.h" />
     <ClInclude Include="SceneNode.h" />
     <ClInclude Include="SpriteNode.h" />
     <ClInclude Include="World.h" />
