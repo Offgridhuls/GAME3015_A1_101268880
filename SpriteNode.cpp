@@ -17,7 +17,7 @@ void SpriteNode::buildCurrent()
 	auto render = std::make_unique<RenderItem>();
 	renderer = render.get();
 	renderer->World = getWorldTransform();
-	XMStoreFloat4x4(&render->TexTransform, XMMatrixScaling(10.0f, 10.0f, 10.0f));
+	XMStoreFloat4x4(&render->TexTransform, XMMatrixScaling(1.0f, 1.0f, 1.0f));
 	renderer->ObjCBIndex = game->mAllRitems.size();
 	renderer->Mat = game->mMaterials["Desert"].get();
 	renderer->Geo = game->mGeometries["shapeGeo"].get();
