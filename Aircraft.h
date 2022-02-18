@@ -1,11 +1,12 @@
 #pragma once
 #include "Entity.h"
 #include "SceneNode.h"
+#include <string>
 class Aircraft : public Entity
 {
 public:
 
-	enum Type
+	enum class Type
 	{
 		Eagle,
 		Raptor,
@@ -17,7 +18,10 @@ private:
 	Type mType;
 	std::string mSprite;
 
+	std::vector<RenderItem*> mRitemLayer[(int)RenderLayer::Count];
+
 	virtual void drawCurrent() const;
 	virtual void buildCurrent();
+	RenderItem* mAircraftRitem;
 };
 

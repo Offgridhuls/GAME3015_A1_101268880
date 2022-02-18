@@ -1,14 +1,26 @@
-c:\users\julia\desktop\game engine development ii\intro-to-dx12-master\src\chapter 9 texturing\texwaves\x64\debug\vc143.pdb
-c:\users\julia\desktop\game engine development ii\intro-to-dx12-master\src\chapter 9 texturing\texwaves\x64\debug\vc143.idb
-c:\users\julia\desktop\game engine development ii\intro-to-dx12-master\src\chapter 9 texturing\texwaves\x64\debug\waves.obj
-c:\users\julia\desktop\game engine development ii\intro-to-dx12-master\src\chapter 9 texturing\texwaves\x64\debug\frameresource.obj
-c:\users\julia\desktop\game engine development ii\intro-to-dx12-master\src\chapter 9 texturing\texwaves\x64\debug\aircraft.obj
-c:\users\julia\desktop\game engine development ii\intro-to-dx12-master\src\chapter 9 texturing\texwaves\x64\debug\mathhelper.obj
-c:\users\julia\desktop\game engine development ii\intro-to-dx12-master\src\chapter 9 texturing\texwaves\x64\debug\geometrygenerator.obj
-c:\users\julia\desktop\game engine development ii\intro-to-dx12-master\src\chapter 9 texturing\texwaves\x64\debug\gametimer.obj
-c:\users\julia\desktop\game engine development ii\intro-to-dx12-master\src\chapter 9 texturing\texwaves\x64\debug\ddstextureloader.obj
-c:\users\julia\desktop\game engine development ii\intro-to-dx12-master\src\chapter 9 texturing\texwaves\x64\debug\d3dutil.obj
-c:\users\julia\desktop\game engine development ii\intro-to-dx12-master\src\chapter 9 texturing\texwaves\x64\debug\d3dapp.obj
-c:\users\julia\desktop\game engine development ii\intro-to-dx12-master\src\chapter 9 texturing\texwaves\x64\debug\texwaves.tlog\cl.command.1.tlog
-c:\users\julia\desktop\game engine development ii\intro-to-dx12-master\src\chapter 9 texturing\texwaves\x64\debug\texwaves.tlog\cl.read.1.tlog
-c:\users\julia\desktop\game engine development ii\intro-to-dx12-master\src\chapter 9 texturing\texwaves\x64\debug\texwaves.tlog\cl.write.1.tlog
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\vc143.pdb
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\vc143.idb
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\world.obj
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\spritenode.obj
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\scenenode.obj
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\main.obj
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\game.obj
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\frameresource.obj
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\entity.obj
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\mathhelper.obj
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\geometrygenerator.obj
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\gametimer.obj
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\ddstextureloader.obj
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\d3dutil.obj
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\d3dapp.obj
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\camera.obj
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\aircraft.obj
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\texwaves.exe
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\texwaves.ilk
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\texwaves.pdb
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\texwaves.tlog\cl.command.1.tlog
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\texwaves.tlog\cl.read.1.tlog
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\texwaves.tlog\cl.write.1.tlog
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\texwaves.tlog\link.command.1.tlog
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\texwaves.tlog\link.read.1.tlog
+c:\users\julia\desktop\game engine development ii\texwaves\x64\debug\texwaves.tlog\link.write.1.tlog

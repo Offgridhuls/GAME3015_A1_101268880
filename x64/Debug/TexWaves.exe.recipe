@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\Julia\Desktop\Game Engine Development II\intro-to-dx12-master\src\Chapter 9 Texturing\TexWaves\x64\Debug\TexWaves.exe</FullPath>
+      <FullPath>C:\Users\Julia\Desktop\Game Engine Development II\TexWaves\x64\Debug\TexWaves.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

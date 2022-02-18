@@ -22,19 +22,19 @@ void World::draw()
 
 void World::buildScene()
 {
-	std::unique_ptr<Aircraft> player(new Aircraft(Aircraft::Eagle, mGame));
+	std::unique_ptr<Aircraft> player(new Aircraft(Aircraft::Type::Eagle, mGame));
 	mPlayerAirCraft = player.get();
-	mPlayerAirCraft->setWorldPosition(0.0f, 1.0f, 0.0f);
+	mPlayerAirCraft->setWorldPosition(0.0f, 0.0f, 0.0f);
 	mPlayerAirCraft->setWorldScale(.5f, .5f, .5f);
-
-	mSceneGraph->attachChild(std::move(player));
-	
+	mPlayerAirCraft->build();
+	//mSceneGraph->attachChild(std::move(player));
 
 	std::unique_ptr<SpriteNode> backgroundSprite(new SpriteNode(mGame));
 	mBackground = backgroundSprite.get();
 	mBackground->setWorldPosition(0, 0.0, 0.0);
 	mBackground->setWorldScale(10, 1, 200);
+	//mBackground->build();
+	//mSceneGraph->attachChild(std::move(backgroundSprite));
 
-
-	mSceneGraph->build();
+	//mSceneGraph->build();
 }

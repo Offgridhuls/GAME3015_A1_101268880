@@ -27,8 +27,8 @@ void Entity::update(const GameTimer& gt)
 	mV.x = mVelocity.x * gt.DeltaTime();
 	mV.y = mVelocity.y * gt.DeltaTime();
 
-	move(mV.x, mV.y, 0);
+	//move(mV.x, mV.y, 0);
 
-	renderer->World = getWorldTransform();
+	//renderer->World = getWorldTransform();
 	renderer->NumFramesDirty++;
 }

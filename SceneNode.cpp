@@ -70,17 +70,18 @@ void SceneNode::setWorldScale(float x, float y, float z)
 XMFLOAT4X4 SceneNode::getWorldTransform() const
 {
 	XMFLOAT4X4 transform = MathHelper::Identity4x4();
-	XMMATRIX T = XMLoadFloat4x4(&transform);
-
-	for(const SceneNode* node = this; node != nullptr; node = node->mParent)
-	{
-		XMMATRIX Tp = XMLoadFloat4x4(&node->getWorldTransform());
-		T = Tp * T;
-	}
-	XMStoreFloat4x4(&transform, T);
+	//XMMATRIX T = XMLoadFloat4x4(&transform);
+	//
+	//for(const SceneNode* node = this; node != nullptr; node = node->mParent)
+	//{
+	//	XMMATRIX Tp = XMLoadFloat4x4(&node->getWorldTransform());
+	//	T = Tp * T;
+	//}
+	//XMStoreFloat4x4(&transform, T);
 
 	return transform;
 }
+
 
 void SceneNode::updateChildren(GameTimer dt)
 {
@@ -92,7 +93,7 @@ void SceneNode::updateChildren(GameTimer dt)
 
 void SceneNode::drawCurrent() const
 {
-	//AIDS
+	
 }
 
 void SceneNode::drawChildren() const
@@ -124,7 +125,7 @@ void SceneNode::draw() const
 
 void SceneNode::build()
 {
-	buildChildren();
+	buildCurrent();
 	buildChildren();
 }
 

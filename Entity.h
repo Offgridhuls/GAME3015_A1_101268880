@@ -1,10 +1,6 @@
 #pragma once
 #include <iostream>
-#include "Common/d3dApp.h"
 #include "SceneNode.h"
-
-using namespace DirectX;
-using namespace DirectX::PackedVector;
 
 class Entity : public SceneNode
 {
