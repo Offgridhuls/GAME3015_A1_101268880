@@ -2,6 +2,7 @@
 #include "SceneNode.h"
 #include "Aircraft.h"
 #include "SpriteNode.h"
+#include "RenderLayer.h"
 
 class World
 {
@@ -37,7 +38,7 @@ private:
 
 	SceneNode* mSceneGraph;
 
-	std::array<SceneNode*, LayerCount> mSceneLayers;
+	std::array<SceneNode*, RenderLayer::Count> mSceneLayers;
 
 	XMFLOAT4 mWorldBounds;
 
@@ -51,5 +52,6 @@ private:
 
 
 	SpriteNode* mBackground;
+	SpriteNode* mBackground2;
 
 };

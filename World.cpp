@@ -20,6 +20,8 @@ void World::update(const GameTimer& gt)
 	XMFLOAT3 playerPosition = mPlayerAirCraft->getWorldPosition();
 	XMFLOAT3 enemyPosition = mEnemyAircraft->getWorldPosition();
 	XMFLOAT3 enemy2Position = mEnemyAircraft2->getWorldPosition();
+	XMFLOAT3 backgroundPosition = mBackground->getWorldPosition();
+	XMFLOAT3 background2Position = mBackground2->getWorldPosition();
 
 
 	if (playerPosition.x + enemyPosition.x > mWorldBounds.y)
@@ -36,6 +38,16 @@ void World::update(const GameTimer& gt)
 		mPlayerAirCraft->setVelocity(playerVelocity);
 		mEnemyAircraft->setVelocity(playerVelocity);
 		mEnemyAircraft2->setVelocity(playerVelocity);
+	}
+
+	if (backgroundPosition.z + (mBackground->getWorldScale().z) < mWorldBounds.w - 10)
+	{
+		mBackground->setWorldPosition(0.0, -10.0, 40);
+	}
+
+	if (background2Position.z + (mBackground2->getWorldScale().z) < mWorldBounds.w - 10)
+	{
+		mBackground2->setWorldPosition(0.0, -10.0, 40);
 	}
 }
 
@@ -272,11 +284,19 @@ void World::buildScene()
 
 	std::unique_ptr<SpriteNode> backgroundSprite(new SpriteNode(mGame));
 	mBackground = backgroundSprite.get();
-	mBackground->setWorldPosition(0.0, -50.0, 0.0);
-	mBackground->setWorldScale(200, 1, 200);
-	mBackground->setSpeed(0.5f);
+	mBackground->setWorldPosition(0.0, -10.0, 0.0);
+	mBackground->setWorldScale(10, 1, 10);
+	mBackground->setSpeed(10.5f);
 	mBackground->setVelocity(0.0, 0.0, -mScrollSpeed);
 	mSceneGraph->attachChild(std::move(backgroundSprite));
+
+	std::unique_ptr<SpriteNode> backgroundSprite2(new SpriteNode(mGame));
+	mBackground2 = backgroundSprite2.get();
+	mBackground2->setWorldPosition(0.0, -10.0, 30.0);
+	mBackground2->setWorldScale(10, 1, 10);
+	mBackground2->setSpeed(10.5f);
+	mBackground2->setVelocity(0.0, 0.0, -mScrollSpeed);
+	mSceneGraph->attachChild(std::move(backgroundSprite2));
 
 	mSceneGraph->build();
 }

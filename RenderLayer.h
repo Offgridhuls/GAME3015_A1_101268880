@@ -1,5 +1,5 @@
 #pragma once
-enum class RenderLayer
+enum RenderLayer
 {
 	Opaque,
 	Transparent,
