@@ -2,26 +2,37 @@
 #include "Entity.h"
 #include "SceneNode.h"
 #include <string>
-class Aircraft : public Entity //Aircraft class, inherits Entity.
+
+//! Aircraft class, inherits Entity.
+class Aircraft : public Entity
 {
 public:
-
-	enum class Type //Enum of type of aircraft in which we need to spawn.
+	//! Enum of type of aircraft in which we need to spawn.
+	enum class Type
 	{
 		Eagle,
 		Raptor,
 	};
 
-	Aircraft(Type type, Game* game); //Aircraft constructor.
+	//! Aircraft constructor.
+	Aircraft(Type type, Game* game);
 
 private:
-	Type mType; //Type of aircraft.
-	std::string mSprite; //Sprite of aircraft.
+	//! Type of aircraft.
+	Type mType;
+
+	//! Sprite of aircraft.
+	std::string mSprite;
 
 	//std::vector<RenderItem*> mRitemLayer[(int)RenderLayer::Count];
 
-	virtual void drawCurrent() const; //Does nothing.
-	virtual void buildCurrent(); //Builds the current aircraft.
-	RenderItem* mAircraftRitem; //Reference to a render item.
+	 //! Does nothing.
+	virtual void drawCurrent() const;
+
+	//! Builds the current aircraft.
+	virtual void buildCurrent();
+
+	//! Reference to a render item.
+	RenderItem* mAircraftRitem;
 };
 

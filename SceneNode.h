@@ -51,7 +51,8 @@ struct RenderItem
 
 class Game;
 
-class SceneNode //Scene node class, initialize a Scenenode using this class.
+//! Scene node class, initialize a Scenenode using this class.
+class SceneNode 
 {
 public:
 	typedef std::unique_ptr<SceneNode> Ptr;
@@ -59,47 +60,82 @@ public:
 public:
 	SceneNode(Game* game); //Scenenode Constructor
 
-	void attachChild(Ptr child); //Attaches specified child to parent object.
-	Ptr detachChild(const SceneNode& node);  //Detaches specified child from parent object.
+	 //! Attaches specified child to parent object
+	void attachChild(Ptr child);
 
-	XMFLOAT3 getWorldPosition() const; //Get world position returns mWorldPosition.
-	void setWorldPosition(float x, float y, float z); //Sets world position.
+	//! Detaches specified child from parent object.
+	Ptr detachChild(const SceneNode& node);
 
-	XMFLOAT3 getWorldRotation() const; // Get world rotation.
-	void setWorldRotation(float x, float y, float z); //Set world rotation.
+	// !Get world position returns mWorldPosition.
+	XMFLOAT3 getWorldPosition() const;
 
-	XMFLOAT3 getWorldScale() const; //Get world scale.
-	void setWorldScale(float x, float y, float z); //Set world scale.
+	//! Sets world position.
+	void setWorldPosition(float x, float y, float z);
 
-	XMFLOAT4X4 getWorldTransform() const; //Gets world orientation. 
-	XMFLOAT4X4 getTransform() const; //Gets transform of object.
+	//! Get world rotation.
+	XMFLOAT3 getWorldRotation() const;
 
-	void Update(const GameTimer& dt); //Update function of Scenenode.
-	void move(float x, float y, float z); //Move function of Scenenode-moves object by velocity.
+	//! Set world rotation.
+	void setWorldRotation(float x, float y, float z);
+
+	//! Get world scale.
+	XMFLOAT3 getWorldScale() const;
+
+	//! Set world scale.
+	void setWorldScale(float x, float y, float z); 
+
+	//! Gets world orientation. 
+	XMFLOAT4X4 getWorldTransform() const;
+
+	//! Gets transform of object.
+	XMFLOAT4X4 getTransform() const;
+
+	//! Update function of Scenenode.
+	void Update(const GameTimer& dt);
+
+	//! Move function of Scenenode-moves object by velocity.
+	void move(float x, float y, float z);
 	void draw() const; 
 	void build();
 
 private:
 	virtual void updateCurrent(GameTimer dt); 
-	void updateChildren(const GameTimer dt); //Updates children.
-	virtual void drawCurrent() const; //Does nothing.
-	void drawChildren() const; //Draws children
-	virtual void buildCurrent(); //Does nothing.
-	void buildChildren(); //Builds Children.
+
+	//! Updates children.
+	void updateChildren(const GameTimer dt);
+
+	//! Does nothing.
+	virtual void drawCurrent() const;
+
+	//! Draws children
+	void drawChildren() const;
+
+	//! Does nothing.
+	virtual void buildCurrent();
+
+	//! Builds Children.
+	void buildChildren();
 
 protected:
+	//! Reference to game class.
+	Game* game;
 
-	Game* game; //Reference to game class.
-
-	RenderItem* renderer; //Reference to renderer.
+	//! Reference to renderer.
+	RenderItem* renderer;
 
 private:
+	//! Children vector
+	std::vector<Ptr> mChildren;
 
-	std::vector<Ptr> mChildren; //Children vector
+	//! Parent node.
+	SceneNode* mParent;
 
-	SceneNode* mParent; //Parent node.
+	//! World position.
+	XMFLOAT3 mWorldPosition;
 
-	XMFLOAT3 mWorldPosition; //World position.
-	XMFLOAT3 mWorldRotation; //World rotation.
-	XMFLOAT3 mWorldScaling; //World scaling.
+	//! World rotation.
+	XMFLOAT3 mWorldRotation;
+
+	//! World scaling.
+	XMFLOAT3 mWorldScaling;
 };

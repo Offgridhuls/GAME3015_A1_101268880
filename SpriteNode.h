@@ -1,16 +1,24 @@
 #pragma once
 #include "Entity.h"
 #include "SceneNode.h"
-class SpriteNode : public Entity //Spritenode class, inherits Entity.
+
+//! Spritenode class, inherits Entity.
+class SpriteNode : public Entity
 {
 
 public:
-	SpriteNode(Game* game); //Sprite node constructor.
-	RenderItem* mSpriteNodeRitem; //Is an item that is rendered into the scene.
+	//! Sprite node constructor.
+	SpriteNode(Game* game);
+
+	//! Is an item that is rendered into the scene.
+	RenderItem* mSpriteNodeRitem;
 
 	//std::vector<RenderItem*> mRitemLayer[(int)RenderLayer::Count];
 private:
-	virtual void drawCurrent() const; //Does nothing.
-	virtual void buildCurrent(); //Builds the node.
+	//! Does nothing.
+	virtual void drawCurrent() const;
+
+	//! Builds the node.
+	virtual void buildCurrent();
 };
 

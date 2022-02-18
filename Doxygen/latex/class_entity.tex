@@ -1,0 +1,76 @@
+\hypertarget{class_entity}{}\doxysection{Entity Class Reference}
+\label{class_entity}\index{Entity@{Entity}}
+
+
+\mbox{\hyperlink{class_entity}{Entity}} class, inherits Scenenode.  
+
+
+
+
+{\ttfamily \#include $<$Entity.\+h$>$}
+
+Inheritance diagram for Entity\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_entity}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_entity_a9f6b0ce5dcbdb9107ba1972da24003a6}\label{class_entity_a9f6b0ce5dcbdb9107ba1972da24003a6}} 
+{\bfseries Entity} (\mbox{\hyperlink{class_game}{Game}} $\ast$\mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}})
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_entity}{Entity}} constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_entity_a472e1690df5fb48c6c7f052e4cb39c78}\label{class_entity_a472e1690df5fb48c6c7f052e4cb39c78}} 
+void {\bfseries set\+Velocity} (XMFLOAT3 velocity)
+\begin{DoxyCompactList}\small\item\em Sets velocity of \mbox{\hyperlink{class_entity}{Entity}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_entity_abb3c22fe7e78968131560642e360e12b}\label{class_entity_abb3c22fe7e78968131560642e360e12b}} 
+void {\bfseries set\+Velocity} (float vx, float vy, float vz)
+\begin{DoxyCompactList}\small\item\em Sets individual velocity float params. (X, Y, Z) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_entity_a389ca5283af8c88edfd4c5d3cc67ecf7}\label{class_entity_a389ca5283af8c88edfd4c5d3cc67ecf7}} 
+void {\bfseries set\+Speed} (float speed)
+\begin{DoxyCompactList}\small\item\em Sets speed of \mbox{\hyperlink{class_entity}{Entity}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_entity_af4fcc5c9f7e9d705502269444ef3eca3}\label{class_entity_af4fcc5c9f7e9d705502269444ef3eca3}} 
+XMFLOAT3 {\bfseries get\+Velocity} () const
+\begin{DoxyCompactList}\small\item\em Returns velocity of \mbox{\hyperlink{class_entity}{Entity}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_entity_a1ab1df6a898303e678a11d727016dd09}\label{class_entity_a1ab1df6a898303e678a11d727016dd09}} 
+float {\bfseries get\+Speed} ()
+\begin{DoxyCompactList}\small\item\em Returns speed of \mbox{\hyperlink{class_entity}{Entity}}. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_entity_a41d706d03a0f2a236349b44869da3c26}{update\+Current}} (Game\+Timer dt)
+\begin{DoxyCompactList}\small\item\em Update the \mbox{\hyperlink{class_entity}{Entity}} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_entity_a15aa77787228598dfa35f5f822695c43}\label{class_entity_a15aa77787228598dfa35f5f822695c43}} 
+XMFLOAT3 {\bfseries m\+Velocity}
+\begin{DoxyCompactList}\small\item\em Variable for velocity. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_entity_a46100ef39a44c37ac198cba14a8cf39c}\label{class_entity_a46100ef39a44c37ac198cba14a8cf39c}} 
+float {\bfseries m\+Speed}
+\begin{DoxyCompactList}\small\item\em Variable for speed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_entity}{Entity}} class, inherits Scenenode. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_entity_a41d706d03a0f2a236349b44869da3c26}\label{class_entity_a41d706d03a0f2a236349b44869da3c26}} 
+\index{Entity@{Entity}!updateCurrent@{updateCurrent}}
+\index{updateCurrent@{updateCurrent}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{updateCurrent()}{updateCurrent()}}
+{\footnotesize\ttfamily void Entity\+::update\+Current (\begin{DoxyParamCaption}\item[{Game\+Timer}]{dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Update the \mbox{\hyperlink{class_entity}{Entity}} object. 
+
+
+
+Reimplemented from \mbox{\hyperlink{class_scene_node}{Scene\+Node}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Entity.\+h\item 
+Entity.\+cpp\end{DoxyCompactItemize}

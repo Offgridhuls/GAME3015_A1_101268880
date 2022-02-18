@@ -2,21 +2,35 @@
 #include <iostream>
 #include "SceneNode.h"
 
-class Entity : public SceneNode //Entity class, inherits Scenenode.
+//! Entity class, inherits Scenenode.
+class Entity : public SceneNode
 {
 public:
-	Entity(Game* game); //Entity constructor.
+	//! Entity constructor.
+	Entity(Game* game);
 
-	void setVelocity(XMFLOAT3 velocity); //Sets velocity of Entity. 
-	void setVelocity(float vx, float vy, float vz); //Sets individual velocity float params. (X, Y, Z)
-	void setSpeed(float speed); //Sets speed of Entity.
+	//! Sets velocity of Entity. 
+	void setVelocity(XMFLOAT3 velocity);
 
-	XMFLOAT3 getVelocity() const; //Returns velocity of Entity.
-	float getSpeed(); //Returns speed of Entity.
+	//! Sets individual velocity float params. (X, Y, Z)
+	void setVelocity(float vx, float vy, float vz);
 
-	virtual void updateCurrent(GameTimer dt); //Update the Entity object.
+	//! Sets speed of Entity.
+	void setSpeed(float speed);
 
-	XMFLOAT3 mVelocity; //Variable for velocity.
-	float mSpeed; //Variable for speed.
+	//! Returns velocity of Entity.
+	XMFLOAT3 getVelocity() const;
+
+	//! Returns speed of Entity.
+	float getSpeed();
+
+	//! Update the Entity object.
+	virtual void updateCurrent(GameTimer dt);
+
+	//! Variable for velocity.
+	XMFLOAT3 mVelocity;
+
+	//! Variable for speed.
+	float mSpeed;
 };
 

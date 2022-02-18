@@ -4,54 +4,65 @@
 #include "SpriteNode.h"
 #include "RenderLayer.h"
 
-class World //World class. Initialize our world in here.
+//! World class. Initialize our world in here.
+class World
 {
 public:
-	explicit World(Game* window); //World constructor takes in a game class to initialize our world.
+	//! World constructor takes in a game class to initialize our world.
+	explicit World(Game* window);
 
-	void update(const GameTimer& gt); //Updates world.
+	//! Updates world.
+	void update(const GameTimer& gt);
 
-	void draw(); //Draws world.
+	//! Draws world.
+	void draw();
 
+	//! Load textures of world.
 	void loadTextures(Microsoft::WRL::ComPtr<ID3D12Device>& GameDevice,
 		Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList>& CommandList,
-		std::unordered_map<std::string, std::unique_ptr<Texture>>& GameTextures); //Load textures of world.
-	void buildMaterials(std::unordered_map<std::string, std::unique_ptr<Material>>& GameMaterials); //Builds materials of world.
+		std::unordered_map<std::string, std::unique_ptr<Texture>>& GameTextures);
+
+	//! Builds materials of world.
+	void buildMaterials(std::unordered_map<std::string, std::unique_ptr<Material>>& GameMaterials);
+
+	//! Builds some shape geometry for our game world. (Some un-needed).
 	void buildShapeGeometry(Microsoft::WRL::ComPtr<ID3D12Device>& GameDevice,
 		Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList>& CommandList,
-		std::unordered_map<std::string, std::unique_ptr<MeshGeometry>>& GameGeometries); //Builds some shape geometry for our game world. (Some un-needed).
+		std::unordered_map<std::string, std::unique_ptr<MeshGeometry>>& GameGeometries);
 
-	void buildScene(); //Builds scene.
-
-
-private:
-
-	enum Layer // Enum in which layers are renderered.
-	{
-		Background,
-		Air,
-		LayerCount,
-	};
+	//! Builds scene.
+	void buildScene();
 
 private:
-	Game* mGame; //Reference to game class.
+	//! Reference to game class.
+	Game* mGame;
 
-	SceneNode* mSceneGraph; //Reference to parent scene node.
+	//! Reference to parent scene node.
+	SceneNode* mSceneGraph;
 
-	std::array<SceneNode*, RenderLayer::Count> mSceneLayers; //Scene layers.
+	//! Scene layers.
+	std::array<SceneNode*, RenderLayer::Count> mSceneLayers;
 
-	XMFLOAT4 mWorldBounds; //World bounds.
+	//! World bounds.
+	XMFLOAT4 mWorldBounds;
 
-	XMFLOAT2 mSpawnPosition; //Spawn position.
+	//! Spawn position.
+	XMFLOAT2 mSpawnPosition;
 
-	float mScrollSpeed; //Scroll speed of world.
+	//! Scroll speed of world.
+	float mScrollSpeed;
 
-	Aircraft* mPlayerAirCraft; //Player aircraft.
-	Aircraft* mEnemyAircraft; //Side aircraft.
-	Aircraft* mEnemyAircraft2; //Side aircraft.
+	//! Player aircraft.
+	Aircraft* mPlayerAirCraft;
 
+	//! Side aircraft.
+	Aircraft* mEnemyAircraft;
 
-	SpriteNode* mBackground; //Scrolling background.
+	//! Side aircraft.
+	Aircraft* mEnemyAircraft2;
+
+	//! Scrolling background.
+	SpriteNode* mBackground;
 	SpriteNode* mBackground2;
 
 };
