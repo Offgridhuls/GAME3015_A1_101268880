@@ -24,7 +24,7 @@ void SpriteNode::buildCurrent()
 	render->StartIndexLocation = render->Geo->DrawArgs["grid"].StartIndexLocation;
 	render->BaseVertexLocation = render->Geo->DrawArgs["grid"].BaseVertexLocation;
 	//render->NumFramesDirty++;
-	mSpriteNodeRitem = render.get();
+	//mSpriteNodeRitem = render.get();
 	mRitemLayer[(int)RenderLayer::Opaque].push_back(render.get());
 	game->mAllRitems.push_back(std::move(render));
 }

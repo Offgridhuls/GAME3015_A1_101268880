@@ -29,6 +29,13 @@ void World::loadTextures(Microsoft::WRL::ComPtr<ID3D12Device>& GameDevice, Micro
 		CommandList.Get(), EagleTex->Filename.c_str(),
 		EagleTex->Resource, EagleTex->UploadHeap));
 
+	auto RaptorTex = std::make_unique<Texture>();
+	RaptorTex->Name = "RaptorTex";
+	RaptorTex->Filename = L"Textures/Raptor.dds";
+	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(GameDevice.Get(),
+		CommandList.Get(), RaptorTex->Filename.c_str(),
+		RaptorTex->Resource, RaptorTex->UploadHeap));
+
 	auto DesertTex = std::make_unique<Texture>();
 	DesertTex->Name = "DesertTex";
 	DesertTex->Filename = L"Textures/Desert.dds";
@@ -44,6 +51,7 @@ void World::loadTextures(Microsoft::WRL::ComPtr<ID3D12Device>& GameDevice, Micro
 		tileTex->Resource, tileTex->UploadHeap));
 
 	GameTextures[EagleTex->Name] = std::move(EagleTex);
+	GameTextures[RaptorTex->Name] = std::move(RaptorTex);
 	GameTextures[DesertTex->Name] = std::move(DesertTex);
 	GameTextures[tileTex->Name] = std::move(tileTex);
 }
@@ -58,23 +66,32 @@ void World::buildMaterials(std::unordered_map<std::string, std::unique_ptr<Mater
 	Eagle->FresnelR0 = XMFLOAT3(0.02f, 0.02f, 0.02f);
 	Eagle->Roughness = 0.1f;
 
+	auto Raptor = std::make_unique<Material>();
+	Raptor->Name = "Raptor";
+	Raptor->MatCBIndex = 1;
+	Raptor->DiffuseSrvHeapIndex = 1;
+	Raptor->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	Raptor->FresnelR0 = XMFLOAT3(0.02f, 0.02f, 0.02f);
+	Raptor->Roughness = 0.1f;
+
 	auto Desert = std::make_unique<Material>();
 	Desert->Name = "Desert";
-	Desert->MatCBIndex = 1;
-	Desert->DiffuseSrvHeapIndex = 1;
+	Desert->MatCBIndex = 2;
+	Desert->DiffuseSrvHeapIndex = 2;
 	Desert->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 	Desert->FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);
 	Desert->Roughness = 0.3f;
 
 	auto tile0 = std::make_unique<Material>();
 	tile0->Name = "tile0";
-	tile0->MatCBIndex = 2;
-	tile0->DiffuseSrvHeapIndex = 2;
+	tile0->MatCBIndex = 3;
+	tile0->DiffuseSrvHeapIndex = 3;
 	tile0->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 	tile0->FresnelR0 = XMFLOAT3(0.02f, 0.02f, 0.02f);
 	tile0->Roughness = 0.3f;
 
 	GameMaterials["Eagle"] = std::move(Eagle);
+	GameMaterials["Raptor"] = std::move(Raptor);
 	GameMaterials["Desert"] = std::move(Desert);
 	GameMaterials["tile0"] = std::move(tile0);
 }
@@ -207,10 +224,24 @@ void World::buildScene()
 {
 	std::unique_ptr<Aircraft> player(new Aircraft(Aircraft::Type::Eagle, mGame));
 	mPlayerAirCraft = player.get();
-	mPlayerAirCraft->setWorldPosition(0.0f, 0.0f, 0.0f);
+	mPlayerAirCraft->setWorldPosition(0.0f, 0.0f, 50.0f);
 	mPlayerAirCraft->setWorldScale(.5f, .5f, .5f);
-	mPlayerAirCraft->build();
-	//mSceneGraph->attachChild(std::move(player));
+	//mPlayerAirCraft->build();
+	mSceneGraph->attachChild(std::move(player));
+
+	std::unique_ptr<Aircraft> enemy(new Aircraft(Aircraft::Type::Raptor, mGame));
+	mEnemyAircraft = enemy.get();
+	mEnemyAircraft->setWorldPosition(-30.0f, 0.0f, 0.0f);
+	mEnemyAircraft->setWorldScale(.5f, .5f, .5f);
+	//mPlayerAirCraft->build();
+	mSceneGraph->attachChild(std::move(enemy));
+
+	std::unique_ptr<Aircraft> enemy2(new Aircraft(Aircraft::Type::Raptor, mGame));
+	mEnemyAircraft2 = enemy2.get();
+	mEnemyAircraft2->setWorldPosition(30.0f, 0.0f, 0.0f);
+	mEnemyAircraft2->setWorldScale(.5f, .5f, .5f);
+	//mPlayerAirCraft->build();
+	mSceneGraph->attachChild(std::move(enemy2));
 
 	std::unique_ptr<SpriteNode> backgroundSprite(new SpriteNode(mGame));
 	mBackground = backgroundSprite.get();
@@ -219,5 +250,5 @@ void World::buildScene()
 	//mBackground->build();
 	//mSceneGraph->attachChild(std::move(backgroundSprite));
 
-	//mSceneGraph->build();
+	mSceneGraph->build();
 }

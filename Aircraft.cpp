@@ -25,15 +25,15 @@ void Aircraft::drawCurrent() const
 void Aircraft::buildCurrent()
 {
 	auto render = std::make_unique<RenderItem>();
-	render->World = getWorldTransform();
-	render->ObjCBIndex = game->mAllRitems.size();
-	render->Mat = game->mMaterials[mSprite].get();
-	render->Geo = game->mGeometries["shapeGeo"].get();
-	render->PrimitiveType = D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
-	render->IndexCount = render->Geo->DrawArgs["grid"].IndexCount;
-	render->StartIndexLocation = render->Geo->DrawArgs["grid"].StartIndexLocation;
-	render->BaseVertexLocation = render->Geo->DrawArgs["grid"].BaseVertexLocation;
 	mAircraftRitem = render.get();
+	mAircraftRitem->World = getWorldTransform();
+	mAircraftRitem->ObjCBIndex = game->mAllRitems.size();
+	mAircraftRitem->Mat = game->mMaterials[mSprite].get();
+	mAircraftRitem->Geo = game->mGeometries["shapeGeo"].get();
+	mAircraftRitem->PrimitiveType = D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+	mAircraftRitem->IndexCount = render->Geo->DrawArgs["grid"].IndexCount;
+	mAircraftRitem->StartIndexLocation = render->Geo->DrawArgs["grid"].StartIndexLocation;
+	mAircraftRitem->BaseVertexLocation = render->Geo->DrawArgs["grid"].BaseVertexLocation;
 	mRitemLayer[(int)RenderLayer::Transparent].push_back(render.get());
 	game->mAllRitems.push_back(std::move(render));
 }

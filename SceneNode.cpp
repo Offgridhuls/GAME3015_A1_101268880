@@ -70,14 +70,28 @@ void SceneNode::setWorldScale(float x, float y, float z)
 XMFLOAT4X4 SceneNode::getWorldTransform() const
 {
 	XMFLOAT4X4 transform = MathHelper::Identity4x4();
-	//XMMATRIX T = XMLoadFloat4x4(&transform);
-	//
-	//for(const SceneNode* node = this; node != nullptr; node = node->mParent)
-	//{
-	//	XMMATRIX Tp = XMLoadFloat4x4(&node->getWorldTransform());
-	//	T = Tp * T;
-	//}
-	//XMStoreFloat4x4(&transform, T);
+	XMMATRIX T = XMLoadFloat4x4(&transform);
+	
+	for(const SceneNode* node = this; node != nullptr; node = node->mParent)
+	{
+		XMMATRIX Tp = XMLoadFloat4x4(&node->getTransform());
+		T = Tp * T;
+	}
+	XMStoreFloat4x4(&transform, T);
+
+	return transform;
+}
+
+XMFLOAT4X4 SceneNode::getTransform() const
+{
+	XMFLOAT4X4 transform;
+	XMMATRIX T(XMMatrixRotationX(XMConvertToRadians(mWorldRotation.x)) *
+		XMMatrixRotationY(XMConvertToRadians(mWorldRotation.y)) *
+			XMMatrixRotationZ(XMConvertToRadians(mWorldRotation.z)) *
+				XMMatrixTranslation(mWorldPosition.x, mWorldPosition.y, mWorldPosition.z) * 
+				XMMatrixScaling(mWorldScaling.x, mWorldScaling.y, mWorldScaling.z));
+
+	XMStoreFloat4x4(&transform, T);
 
 	return transform;
 }

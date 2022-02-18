@@ -46,6 +46,9 @@ private:
 	float mScrollSpeed;
 
 	Aircraft* mPlayerAirCraft;
+	Aircraft* mEnemyAircraft;
+	Aircraft* mEnemyAircraft2;
+
 
 	SpriteNode* mBackground;
 

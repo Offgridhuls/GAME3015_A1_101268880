@@ -60,6 +60,8 @@ public:
     std::unordered_map<std::string, ComPtr<ID3DBlob>> mShaders;
     std::unordered_map<std::string, ComPtr<ID3D12PipelineState>> mPSOs;
     std::vector<std::unique_ptr<RenderItem>> mAllRitems;
+    std::vector<std::unique_ptr<RenderItem>>& getRenderItems();
+
 
 
     World mWorld;
@@ -92,7 +94,7 @@ private:
 
     float mTheta = 1.5f * XM_PI;
     float mPhi = 0.2f * XM_PI;
-    float mRadius = 15.0f;
+    float mRadius = 80.0f;
 
     POINT mLastMousePos;
 };

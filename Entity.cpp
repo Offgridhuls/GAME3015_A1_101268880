@@ -29,6 +29,6 @@ void Entity::update(const GameTimer& gt)
 
 	//move(mV.x, mV.y, 0);
 
-	//renderer->World = getWorldTransform();
+	renderer->World = getWorldTransform();
 	renderer->NumFramesDirty++;
 }
