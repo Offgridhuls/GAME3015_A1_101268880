@@ -33,12 +33,13 @@ float Entity::getSpeed()
 
 void Entity::updateCurrent(GameTimer dt)
 {
-	XMFLOAT2 mV;
+	XMFLOAT3 mV;
 
 	mV.x = mVelocity.x * dt.DeltaTime() * mSpeed;
 	mV.y = mVelocity.y * dt.DeltaTime() * mSpeed;
+	mV.z = mVelocity.z * dt.DeltaTime() * mSpeed;
 
-	move(mV.x, mV.y, 0);
+	move(mV.x, mV.y, mV.z);
 
 	renderer->World = getWorldTransform();
 	renderer->NumFramesDirty++;

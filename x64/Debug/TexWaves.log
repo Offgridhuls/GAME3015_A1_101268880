@@ -1,8 +1,2 @@
-﻿  Aircraft.cpp
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Aircraft.cpp(30,48): warning C4267: '=': conversion from 'size_t' to 'UINT', possible loss of data
-  Game.cpp
-  SpriteNode.cpp
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\SpriteNode.cpp(21,48): warning C4267: '=': conversion from 'size_t' to 'UINT', possible loss of data
-  main.cpp
-  Generating Code...
+﻿  World.cpp
   TexWaves.vcxproj -> D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\x64\Debug\TexWaves.exe

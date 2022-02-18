@@ -274,8 +274,8 @@ void World::buildScene()
 	mBackground = backgroundSprite.get();
 	mBackground->setWorldPosition(0.0, -50.0, 0.0);
 	mBackground->setWorldScale(200, 1, 200);
-	mBackground->setSpeed(10.0f);
-	mBackground->setVelocity(0.0, 0.0, mScrollSpeed);
+	mBackground->setSpeed(0.5f);
+	mBackground->setVelocity(0.0, 0.0, -mScrollSpeed);
 	mSceneGraph->attachChild(std::move(backgroundSprite));
 
 	mSceneGraph->build();
