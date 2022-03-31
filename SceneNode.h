@@ -5,6 +5,7 @@
 #include "Common/GeometryGenerator.h"
 #include "Common/Camera.h"
 #include "DirectXMath.h"
+#include "Category.h"
 #include <vector>
 #include <memory>
 #include "FrameResource.h"
@@ -50,6 +51,7 @@ struct RenderItem
 };
 
 class Game;
+struct Command;
 
 //! Scene node class, initialize a Scenenode using this class.
 class SceneNode 
@@ -59,6 +61,9 @@ public:
 
 public:
 	SceneNode(Game* game); //Scenenode Constructor
+
+	void onCommand(const Command& command, GameTimer dt);
+	virtual unsigned int getCategory() const;
 
 	 //! Attaches specified child to parent object
 	void attachChild(Ptr child);

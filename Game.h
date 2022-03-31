@@ -4,6 +4,7 @@
 #include "Common/UploadBuffer.h"
 #include "Common/GeometryGenerator.h"
 #include "Aircraft.h"
+#include "Player.h"
 #include "FrameResource.h"
 #include "World.h"
 #include "RenderLayer.h"
@@ -40,6 +41,7 @@ private:
     void UpdateObjectCBs(const GameTimer& gt);
     void UpdateMaterialCBs(const GameTimer& gt);
     void UpdateMainPassCB(const GameTimer& gt);
+    void processInput();
 
     void LoadTextures();
     void BuildRootSignature();

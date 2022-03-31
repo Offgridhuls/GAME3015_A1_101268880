@@ -1,4 +1,5 @@
 #include "SceneNode.h"
+#include "Command.h"
 
 SceneNode::SceneNode(Game* game) //Scenenode Constructor
 	: mChildren(),
@@ -147,6 +148,26 @@ void SceneNode::build() //Builds Scenenode children.
 void SceneNode::updateCurrent(GameTimer dt)
 {
 	//Do nothing here
+}
+
+void SceneNode::onCommand(const Command& command, GameTimer dt)
+{
+	// Command current node, if category matches
+	if (command.category & getCategory())
+	{
+		command.action(*this, dt);
+	}
+
+	// Command children
+	for (Ptr& child : mChildren)
+	{
+		child->onCommand(command, dt);
+	}
+}
+
+unsigned int SceneNode::getCategory() const
+{
+	return Category::Scene;
 }
 
 

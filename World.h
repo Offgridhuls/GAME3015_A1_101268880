@@ -3,6 +3,8 @@
 #include "Aircraft.h"
 #include "SpriteNode.h"
 #include "RenderLayer.h"
+#include "CommandQueue.h"
+#include "Command.h"
 
 //! World class. Initialize our world in here.
 class World
@@ -33,7 +35,10 @@ public:
 	//! Builds scene.
 	void buildScene();
 
+	CommandQueue& getCommandQueue();
+
 private:
+	CommandQueue mCommandQueue;
 	//! Reference to game class.
 	Game* mGame;
 

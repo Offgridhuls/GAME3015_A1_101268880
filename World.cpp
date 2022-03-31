@@ -12,8 +12,21 @@ mScrollSpeed(1.0f)
 
 }
 
+CommandQueue& World::getCommandQueue()
+{
+	return mCommandQueue;
+}
+
 void World::update(const GameTimer& gt)
 {
+	// Forward commands to the scene graph
+	while (!mCommandQueue.isEmpty())
+	{
+		mSceneGraph->onCommand(mCommandQueue.pop(), gt);
+	}
+	
+	// Regular update step
+
 	mSceneGraph->Update(gt);
 
 	XMFLOAT3 playerVelocity = mPlayerAirCraft->getVelocity();

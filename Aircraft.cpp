@@ -37,3 +37,16 @@ void Aircraft::buildCurrent()
 	game->mRitemLayer[(int)RenderLayer::Transparent].push_back(render.get());
 	game->mAllRitems.push_back(std::move(render));
 }
+
+unsigned int Aircraft::getCategory() const
+{
+	switch (mType)
+	{
+	case Aircraft::Type::Eagle:
+		return Category::PlayerAircraft;
+		break;
+	case Aircraft::Type::Raptor:
+		return Category::EnemyAircraft;
+		break;
+	}
+}

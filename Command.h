@@ -2,6 +2,7 @@
 #include <functional>
 #include "Common/d3dApp.h"
 #include <cassert>
+#include "Category.h"
 
 class SceneNode;
 
@@ -10,7 +11,6 @@ struct Command
 	Command();
 
 	std::function<void(SceneNode&, GameTimer)> action;
-
 	unsigned int category;
 };
 

@@ -81,6 +81,7 @@ void Game::Update(const GameTimer& gt)
 	OnKeyboardInput(gt);
 	mWorld.update(gt);
 	UpdateCamera(gt);
+	processInput();
 
 	// Cycle through the circular frame resource array.
 	mCurrFrameResourceIndex = (mCurrFrameResourceIndex + 1) % gNumFrameResources;
@@ -319,6 +320,13 @@ void Game::UpdateMainPassCB(const GameTimer& gt)
 
 	auto currPassCB = mCurrFrameResource->PassCB.get();
 	currPassCB->CopyData(0, mMainPassCB);
+}
+
+void Game::processInput()
+{
+	CommandQueue& commands = mWorld.getCommandQueue();
+	mPlayer.handleEvent(commands);
+	mPlayer.handleRealtimeInput(commands);
 }
 
 void Game::LoadTextures()
