@@ -23,13 +23,29 @@ Player::Player()
 
 void Player::handleEvent(CommandQueue& commands)
 {
-	const float playerSpeed = 30.f;
-	if (Keyboard::Left & 0x8000)
+	const float playerSpeed = 10.f;
+	if (GetAsyncKeyState(Keyboard::Left))
 	{
 		Command moveLeft;
 		moveLeft.category = Category::PlayerAircraft;
 		moveLeft.action = derivedAction<Aircraft>(AircraftMover(-playerSpeed, 0.f, 0.f));
 		commands.push(moveLeft);
+	}
+
+	else if (GetAsyncKeyState(Keyboard::Right))
+	{
+		Command moveRight;
+		moveRight.category = Category::PlayerAircraft;
+		moveRight.action = derivedAction<Aircraft>(AircraftMover(playerSpeed, 0.f, 0.f));
+		commands.push(moveRight);
+	}
+
+	else
+	{
+		Command dontMove;
+		dontMove.category = Category::PlayerAircraft;
+		dontMove.action = derivedAction<Aircraft>(AircraftMover(0.f, 0.f, 0.f));
+		commands.push(dontMove);
 	}
 }
 
@@ -53,14 +69,15 @@ void Player::initializeActions()
 
 bool Player::isRealtimeAction(Action action)
 {
-		switch (action)
-		{
-		case MoveLeft:
-		case MoveRight:
-		case MoveDown:
-		case MoveUp:
-			return true;
+	switch (action)
+	{
+	case MoveLeft:
+	case MoveRight:
+	case MoveDown:
+	case MoveUp:
+		return true;
 
-		default:
-			return false;
+	default:
+		return false;
+	}
 }
