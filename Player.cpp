@@ -15,7 +15,8 @@ Player::Player()
 
 	mActionBinding[MoveLeft].action = [](SceneNode& node, GameTimer dt)
 	{
-		//node.move();
+
+		//node.move(.1f,.1f,.1f);
 	};
 	// Set initial action bindings
 	//initializeActions();
@@ -28,7 +29,7 @@ Player::Player()
 void Player::handleEvent(CommandQueue& commands)
 {
 	const float playerSpeed = 30.f;
-	//if (GetAsyncKeyState(VK_UP) & 0x8000)
+	//if (Keyboard::Left & 0x8000)
 	//{
 	//	Command moveLeft;
 	//	moveLeft.category = Category::PlayerAircraft;
