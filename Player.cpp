@@ -8,27 +8,17 @@
 #include <algorithm>
 #include <iostream>
 
-struct AircraftMover
-{
-	AircraftMover(float vx, float vy, float vz)
-		: velocity(vx, vy, vz)
-	{
-	}
-
-	void operator() (Aircraft& aircraft, GameTimer) const
-	{
-		Aircraft& aircraft = static_cast<Aircraft&>(node);
-		aircraft.accelerate(velocity);
-	}
-
-	XMFLOAT3 velocity;
-};
-
 Player::Player()
 {
+	mKeyBinding[Keyboard::Left] = MoveLeft;
+	mKeyBinding[Keyboard::Right] = MoveRight;
 
+	mActionBinding[MoveLeft].action = [](SceneNode& node, GameTimer dt)
+	{
+		//node.move();
+	};
 	// Set initial action bindings
-	initializeActions();
+	//initializeActions();
 
 	// Assign all categories to player's aircraft
 	for (auto& pair : mActionBinding)
@@ -38,13 +28,13 @@ Player::Player()
 void Player::handleEvent(CommandQueue& commands)
 {
 	const float playerSpeed = 30.f;
-	if (GetAsyncKeyState(VK_UP) & 0x8000)
-	{
-		Command moveLeft;
-		moveLeft.category = Category::PlayerAircraft;
-		moveLeft.action = derivedAction<Aircraft>(AircraftMover(-playerSpeed, 0.f, 0.f));
-		commands.push(moveLeft);
-	}
+	//if (GetAsyncKeyState(VK_UP) & 0x8000)
+	//{
+	//	Command moveLeft;
+	//	moveLeft.category = Category::PlayerAircraft;
+	//	moveLeft.action = derivedAction<Aircraft>(AircraftMover(-playerSpeed, 0.f, 0.f));
+	//	commands.push(moveLeft);
+	//}
 }
 
 void Player::handleRealtimeInput(CommandQueue& commands)

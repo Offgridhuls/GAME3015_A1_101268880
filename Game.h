@@ -67,7 +67,7 @@ public:
     std::vector<RenderItem*> mRitemLayer[(int)RenderLayer::Count];
 
 
-
+    Player mPlayer;
     World mWorld;
 
 private:

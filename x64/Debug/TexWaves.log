@@ -1,54 +1,10 @@
 ﻿  Aircraft.cpp
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(23,37): error C2039: 'makekey': is not a member of 'std'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\map(25): message : see declaration of 'std'
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(23,45): error C2061: syntax error: identifier 'makekey'
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(24,11): error C3646: 'key': unknown override specifier
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(24,15): error C3646: 'getAssignedKey': unknown override specifier
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(24,29): error C2059: syntax error: '('
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(24,50): error C2238: unexpected token(s) preceding ';'
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Aircraft.cpp(30,48): warning C4267: '=': conversion from 'size_t' to 'UINT', possible loss of data
-  Command.cpp
-  Entity.cpp
+C:\Users\Julia\Desktop\Game Engine Development II\TexWaves\Aircraft.cpp(30,48): warning C4267: '=': conversion from 'size_t' to 'UINT', possible loss of data
   Game.cpp
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(23,37): error C2039: 'makekey': is not a member of 'std'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\map(25): message : see declaration of 'std'
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(23,45): error C2061: syntax error: identifier 'makekey'
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(24,11): error C3646: 'key': unknown override specifier
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(24,15): error C3646: 'getAssignedKey': unknown override specifier
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(24,29): error C2059: syntax error: '('
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(24,50): error C2238: unexpected token(s) preceding ';'
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Game.cpp(328,2): error C2065: 'mPlayer': undeclared identifier
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Game.cpp(329,2): error C2065: 'mPlayer': undeclared identifier
   main.cpp
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(23,37): error C2039: 'makekey': is not a member of 'std'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\map(25): message : see declaration of 'std'
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(23,45): error C2061: syntax error: identifier 'makekey'
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(24,11): error C3646: 'key': unknown override specifier
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(24,15): error C3646: 'getAssignedKey': unknown override specifier
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(24,29): error C2059: syntax error: '('
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(24,50): error C2238: unexpected token(s) preceding ';'
   Player.cpp
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(23,37): error C2039: 'makekey': is not a member of 'std'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\map(25): message : see declaration of 'std'
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(23,45): error C2061: syntax error: identifier 'makekey'
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(24,11): error C3646: 'key': unknown override specifier
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(24,15): error C3646: 'getAssignedKey': unknown override specifier
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(24,29): error C2059: syntax error: '('
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(24,50): error C2238: unexpected token(s) preceding ';'
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.cpp(20,1): error C2082: redefinition of formal parameter 'aircraft'
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.cpp(20,47): error C2065: 'node': undeclared identifier
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.cpp(20,22): error C2530: 'aircraft': references must be initialized
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.cpp(21,12): error C2039: 'accelerate': is not a member of 'Aircraft'
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Aircraft.h(7): message : see declaration of 'Aircraft'
-  SceneNode.cpp
   SpriteNode.cpp
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(23,37): error C2039: 'makekey': is not a member of 'std'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\map(25): message : see declaration of 'std'
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(23,45): error C2061: syntax error: identifier 'makekey'
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(24,11): error C3646: 'key': unknown override specifier
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(24,15): error C3646: 'getAssignedKey': unknown override specifier
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(24,29): error C2059: syntax error: '('
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\Player.h(24,50): error C2238: unexpected token(s) preceding ';'
-D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\SpriteNode.cpp(21,48): warning C4267: '=': conversion from 'size_t' to 'UINT', possible loss of data
-  World.cpp
+C:\Users\Julia\Desktop\Game Engine Development II\TexWaves\SpriteNode.cpp(21,48): warning C4267: '=': conversion from 'size_t' to 'UINT', possible loss of data
   Generating Code...
+C:\Users\Julia\Desktop\Game Engine Development II\TexWaves\Aircraft.cpp(52): warning C4715: 'Aircraft::getCategory': not all control paths return a value
+  TexWaves.vcxproj -> C:\Users\Julia\Desktop\Game Engine Development II\TexWaves\x64\Debug\TexWaves.exe
