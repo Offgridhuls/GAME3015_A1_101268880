@@ -13,13 +13,8 @@ Player::Player()
 	mKeyBinding[Keyboard::Left] = MoveLeft;
 	mKeyBinding[Keyboard::Right] = MoveRight;
 
-	mActionBinding[MoveLeft].action = [](SceneNode& node, GameTimer dt)
-	{
-
-		node.move(.1f,.1f,.1f);
-	};
 	// Set initial action bindings
-	//initializeActions();
+	initializeActions();
 
 	// Assign all categories to player's aircraft
 	for (auto& pair : mActionBinding)
@@ -40,5 +35,32 @@ void Player::handleEvent(CommandQueue& commands)
 
 void Player::handleRealtimeInput(CommandQueue& commands)
 {
-	
+	for (auto pair : mKeyBinding)
+	{
+		// If key is pressed, lookup action and trigger corresponding command
+		//if (Keyboard::isKeyPressed(pair.first) && isRealtimeAction(pair.second))
+		//	commands.push(mActionBinding[pair.second]);
+	}
+}
+
+void Player::initializeActions()
+{
+	const float playerSpeed = 200.f;
+
+	mActionBinding[MoveLeft].action = derivedAction<Aircraft>(AircraftMover(-.1f * playerSpeed,.0f,.0f));
+	mActionBinding[MoveRight].action = derivedAction<Aircraft>(AircraftMover(.1f * playerSpeed, .0f, .0f));
+}
+
+bool Player::isRealtimeAction(Action action)
+{
+		switch (action)
+		{
+		case MoveLeft:
+		case MoveRight:
+		case MoveDown:
+		case MoveUp:
+			return true;
+
+		default:
+			return false;
 }

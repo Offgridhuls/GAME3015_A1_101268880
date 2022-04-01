@@ -40,33 +40,33 @@ void World::update(const GameTimer& gt)
 	if (playerPosition.x + enemyPosition.x > mWorldBounds.y)
 	{
 		playerVelocity.x = -playerVelocity.x;
-		mPlayerAirCraft->setVelocity(playerVelocity);
-		mEnemyAircraft->setVelocity(playerVelocity);
-		mEnemyAircraft2->setVelocity(playerVelocity);
+		//mPlayerAirCraft->setVelocity(playerVelocity);
+		//mEnemyAircraft->setVelocity(playerVelocity);
+		//mEnemyAircraft2->setVelocity(playerVelocity);
 	}
 
 	else if (playerPosition.x + enemy2Position.x < mWorldBounds.x)
 	{
 		playerVelocity.x = -playerVelocity.x;
-		mPlayerAirCraft->setVelocity(playerVelocity);
-		mEnemyAircraft->setVelocity(playerVelocity);
-		mEnemyAircraft2->setVelocity(playerVelocity);
+		//mPlayerAirCraft->setVelocity(playerVelocity);
+		//mEnemyAircraft->setVelocity(playerVelocity);
+		//mEnemyAircraft2->setVelocity(playerVelocity);
 	}
 
 	if (playerPosition.y > mWorldBounds.z)
 	{
 		playerVelocity.y = -playerVelocity.y;
-		mPlayerAirCraft->setVelocity(playerVelocity);
-		mEnemyAircraft->setVelocity(playerVelocity);
-		mEnemyAircraft2->setVelocity(playerVelocity);
+		//mPlayerAirCraft->setVelocity(playerVelocity);
+		//mEnemyAircraft->setVelocity(playerVelocity);
+		//mEnemyAircraft2->setVelocity(playerVelocity);
 	}
 
 	else if (playerPosition.y < mWorldBounds.w)
 	{
 		playerVelocity.y = -playerVelocity.y;
-		mPlayerAirCraft->setVelocity(playerVelocity);
-		mEnemyAircraft->setVelocity(playerVelocity);
-		mEnemyAircraft2->setVelocity(playerVelocity);
+		//mPlayerAirCraft->setVelocity(playerVelocity);
+		//mEnemyAircraft->setVelocity(playerVelocity);
+		//mEnemyAircraft2->setVelocity(playerVelocity);
 	}
 
 	if (backgroundPosition.z + (mBackground->getWorldScale().z) < mWorldBounds.w - 10)
