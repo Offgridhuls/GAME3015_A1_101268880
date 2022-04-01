@@ -22,6 +22,6 @@ std::function<void(SceneNode&, GameTimer)> derivedAction(Function fn)
 		assert(dynamic_cast<GameObject*>(&node) != nullptr);
 
 		fn(static_cast<GameObject&>(node), dt);
-	}
+	};
 
 }
