@@ -54,17 +54,34 @@ void Player::handleRealtimeInput(CommandQueue& commands)
 	for (auto pair : mKeyBinding)
 	{
 		// If key is pressed, lookup action and trigger corresponding command
-		//if (Keyboard::isKeyPressed(pair.first) && isRealtimeAction(pair.second))
-		//	commands.push(mActionBinding[pair.second]);
+		if (GetAsyncKeyState(pair.first) && isRealtimeAction(pair.second))
+		commands.push(mActionBinding[pair.second]);
 	}
 }
 
 void Player::initializeActions()
 {
+
 	const float playerSpeed = 200.f;
 
-	mActionBinding[MoveLeft].action = derivedAction<Aircraft>(AircraftMover(-.1f * playerSpeed,.0f,.0f));
+	mActionBinding[MoveLeft].action = derivedAction<Aircraft>(AircraftMover(-.1f * playerSpeed, .0f, .0f));
 	mActionBinding[MoveRight].action = derivedAction<Aircraft>(AircraftMover(.1f * playerSpeed, .0f, .0f));
+
+}
+
+void Player::assignKey(Action action, Keyboard key)
+{
+	// Remove all keys that already map to action
+	for (auto itr = mKeyBinding.begin(); itr != mKeyBinding.end(); )
+	{
+		if (itr->second == action)
+			mKeyBinding.erase(itr++);
+		else
+			++itr;
+	}
+
+	// Insert new binding
+	mKeyBinding[key] = action;
 }
 
 bool Player::isRealtimeAction(Action action)
