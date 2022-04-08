@@ -1,0 +1,47 @@
+\hypertarget{_player_8h_source}{}\doxysection{Player.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}Command.h"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}AircraftMover.h"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}Keyboard.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{class }\mbox{\hyperlink{class_command_queue}{CommandQueue}};}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{10 \textcolor{keyword}{class }\mbox{\hyperlink{class_player}{Player}}}
+\DoxyCodeLine{11 \{}
+\DoxyCodeLine{12 \textcolor{keyword}{public}:}
+\DoxyCodeLine{13     \mbox{\hyperlink{class_player}{Player}}();}
+\DoxyCodeLine{15     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_player_abdabbfe5ce0c04acf504ff5054dbcbc1}{handleEvent}}(\mbox{\hyperlink{class_command_queue}{CommandQueue}}\& commands);}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{18     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_player_ac520744c103fb38763c8856b4f158627}{handleRealtimeInput}}(\mbox{\hyperlink{class_command_queue}{CommandQueue}}\& commands);}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#pragma region step 1}}
+\DoxyCodeLine{21     \textcolor{keyword}{enum} \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}}}
+\DoxyCodeLine{22     \{}
+\DoxyCodeLine{23         MoveLeft,}
+\DoxyCodeLine{24         MoveRight,}
+\DoxyCodeLine{25         MoveUp,}
+\DoxyCodeLine{26         MoveDown,}
+\DoxyCodeLine{27         GetPosition,}
+\DoxyCodeLine{28         ActionCount}
+\DoxyCodeLine{29     \};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{32     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_player_ab4c90fedc58418d30be32bd4b497d2de}{assignKey}}(\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}} action, Keyboard key);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{35     Keyboard \mbox{\hyperlink{class_player_a4277fcdf6ccdcc6fab12f61ff4e4f230}{getAssignedKey}}(\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}} action) \textcolor{keyword}{const};}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{keyword}{private}:}
+\DoxyCodeLine{39     \textcolor{keywordtype}{void} initializeActions();}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{42     \textcolor{keyword}{static} \textcolor{keywordtype}{bool} isRealtimeAction(\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}} action);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{keyword}{private}:}
+\DoxyCodeLine{45     XMFLOAT3 playerSpeed;}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47     std::map<Keyboard, Action>              mKeyBinding;}
+\DoxyCodeLine{48     std::map<Action, Command>               mActionBinding;}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\};}}
+
+\end{DoxyCode}

@@ -1,0 +1,47 @@
+\hypertarget{class_world}{}\doxysection{World Class Reference}
+\label{class_world}\index{World@{World}}
+
+
+\mbox{\hyperlink{class_world}{World}} class. Initialize our world in here.  
+
+
+
+
+{\ttfamily \#include $<$World.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_world_a712eb4a5b0d12588dd61d10c91b83366}\label{class_world_a712eb4a5b0d12588dd61d10c91b83366}} 
+{\bfseries World} (\mbox{\hyperlink{class_game}{Game}} $\ast$window)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_world}{World}} constructor takes in a game class to initialize our world. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_world_a36c003f54e14e022a360551af5e7923e}\label{class_world_a36c003f54e14e022a360551af5e7923e}} 
+void {\bfseries update} (const Game\+Timer \&gt)
+\begin{DoxyCompactList}\small\item\em Updates world. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_world_ab51a17ccbb108616daacd0c34973dc8d}\label{class_world_ab51a17ccbb108616daacd0c34973dc8d}} 
+void {\bfseries draw} ()
+\begin{DoxyCompactList}\small\item\em Draws world. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_world_a8fe3b1ff595542e39fa3c05b9d72183a}\label{class_world_a8fe3b1ff595542e39fa3c05b9d72183a}} 
+void {\bfseries load\+Textures} (Microsoft\+::\+WRL\+::\+Com\+Ptr$<$ ID3\+D12\+Device $>$ \&Game\+Device, Microsoft\+::\+WRL\+::\+Com\+Ptr$<$ ID3\+D12\+Graphics\+Command\+List $>$ \&Command\+List, std\+::unordered\+\_\+map$<$ std\+::string, std\+::unique\+\_\+ptr$<$ Texture $>$ $>$ \&Game\+Textures)
+\begin{DoxyCompactList}\small\item\em Load textures of world. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_world_a2f5be5b0b75f195b039686f5f9a63560}\label{class_world_a2f5be5b0b75f195b039686f5f9a63560}} 
+void {\bfseries build\+Materials} (std\+::unordered\+\_\+map$<$ std\+::string, std\+::unique\+\_\+ptr$<$ Material $>$ $>$ \&Game\+Materials)
+\begin{DoxyCompactList}\small\item\em Builds materials of world. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_world_ac6bcac1dac7a9da3afbf4cbff3611315}\label{class_world_ac6bcac1dac7a9da3afbf4cbff3611315}} 
+void {\bfseries build\+Shape\+Geometry} (Microsoft\+::\+WRL\+::\+Com\+Ptr$<$ ID3\+D12\+Device $>$ \&Game\+Device, Microsoft\+::\+WRL\+::\+Com\+Ptr$<$ ID3\+D12\+Graphics\+Command\+List $>$ \&Command\+List, std\+::unordered\+\_\+map$<$ std\+::string, std\+::unique\+\_\+ptr$<$ Mesh\+Geometry $>$ $>$ \&Game\+Geometries)
+\begin{DoxyCompactList}\small\item\em Builds some shape geometry for our game world. (Some un-\/needed). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_world_ae7df49f5d488e5cd1254bf360966f410}\label{class_world_ae7df49f5d488e5cd1254bf360966f410}} 
+void {\bfseries build\+Scene} ()
+\begin{DoxyCompactList}\small\item\em Builds scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_world_af224b413f30c86ec99d042d0f4df56ee}\label{class_world_af224b413f30c86ec99d042d0f4df56ee}} 
+\mbox{\hyperlink{class_command_queue}{Command\+Queue}} \& {\bfseries get\+Command\+Queue} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_world}{World}} class. Initialize our world in here. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+World.\+h\item 
+World.\+cpp\end{DoxyCompactItemize}

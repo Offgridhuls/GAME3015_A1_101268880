@@ -6,6 +6,7 @@
 
 class SceneNode;
 
+//! Command struct, has an action and a category.
 struct Command
 {
 	Command();
@@ -14,6 +15,7 @@ struct Command
 	unsigned int category;
 };
 
+//! Checks if there's a node and a derived action
 template <typename GameObject, typename Function>
 std::function<void(SceneNode&, GameTimer)> derivedAction(Function fn)
 {

@@ -1,0 +1,32 @@
+\hypertarget{_command_8h_source}{}\doxysection{Command.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include <functional>}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}Common/d3dApp.h"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <cassert>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}Category.h"{}}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{class }\mbox{\hyperlink{class_scene_node}{SceneNode}};}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{10 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_command}{Command}}}
+\DoxyCodeLine{11 \{}
+\DoxyCodeLine{12     \mbox{\hyperlink{struct_command}{Command}}();}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14     std::function<void(\mbox{\hyperlink{class_scene_node}{SceneNode}}\&, GameTimer)> action;}
+\DoxyCodeLine{15     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} category;}
+\DoxyCodeLine{16 \};}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{19 \textcolor{keyword}{template} <\textcolor{keyword}{typename} GameObject, \textcolor{keyword}{typename} Function>}
+\DoxyCodeLine{20 std::function<void(\mbox{\hyperlink{class_scene_node}{SceneNode}}\&, GameTimer)> derivedAction(Function fn)}
+\DoxyCodeLine{21 \{}
+\DoxyCodeLine{22     \textcolor{keywordflow}{return} [=](\mbox{\hyperlink{class_scene_node}{SceneNode}}\& node, GameTimer dt)}
+\DoxyCodeLine{23     \{}
+\DoxyCodeLine{24         assert(\textcolor{keyword}{dynamic\_cast<}GameObject*\textcolor{keyword}{>}(\&node) != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26         fn(\textcolor{keyword}{static\_cast<}GameObject\&\textcolor{keyword}{>}(node), dt);}
+\DoxyCodeLine{27     \};}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \}}
+
+\end{DoxyCode}

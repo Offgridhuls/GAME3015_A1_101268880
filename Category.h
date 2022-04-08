@@ -1,4 +1,5 @@
 #pragma once
+//! Category, divides game objects into different categories to recieve different commands.
 namespace Category
 {
 	enum Type

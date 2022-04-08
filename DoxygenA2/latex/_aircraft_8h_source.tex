@@ -1,0 +1,36 @@
+\hypertarget{_aircraft_8h_source}{}\doxysection{Aircraft.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}Entity.h"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}SceneNode.h"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{7 \textcolor{keyword}{class }\mbox{\hyperlink{class_aircraft}{Aircraft}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_entity}{Entity}}}
+\DoxyCodeLine{8 \{}
+\DoxyCodeLine{9 \textcolor{keyword}{public}:}
+\DoxyCodeLine{11     \textcolor{keyword}{enum class} \mbox{\hyperlink{class_aircraft_a7dae28542933e088032b753600046acd}{Type}}}
+\DoxyCodeLine{12     \{}
+\DoxyCodeLine{13         Eagle,}
+\DoxyCodeLine{14         Raptor,}
+\DoxyCodeLine{15     \};}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{18     \mbox{\hyperlink{class_aircraft_ae9d52b44a62c33bf411185829158fba4}{Aircraft}}(\mbox{\hyperlink{class_aircraft_a7dae28542933e088032b753600046acd}{Type}} type, \mbox{\hyperlink{class_game}{Game}}* \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}});}
+\DoxyCodeLine{19     \textcolor{keyword}{virtual} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} getCategory() \textcolor{keyword}{const};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{private}:}
+\DoxyCodeLine{23     \mbox{\hyperlink{class_aircraft_a7dae28542933e088032b753600046acd}{Type}} mType;}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{26     std::string mSprite;}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \textcolor{comment}{//std::vector<RenderItem*> mRitemLayer[(int)RenderLayer::Count];}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{31     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} drawCurrent() \textcolor{keyword}{const};}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{34     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} buildCurrent();}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{37     \mbox{\hyperlink{struct_render_item}{RenderItem}}* mAircraftRitem;}
+\DoxyCodeLine{38 \};}
+\DoxyCodeLine{39 }
+
+\end{DoxyCode}

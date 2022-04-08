@@ -1,0 +1,62 @@
+\hypertarget{class_game}{}\doxysection{Game Class Reference}
+\label{class_game}\index{Game@{Game}}
+Inheritance diagram for Game\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_game}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_game_a3f68a62a1fe1ca8dcd1deb054b384cef}\label{class_game_a3f68a62a1fe1ca8dcd1deb054b384cef}} 
+{\bfseries Game} (HINSTANCE h\+Instance)
+\item 
+\mbox{\Hypertarget{class_game_a293c79673d4c15f55f1ab7f3d1809ddb}\label{class_game_a293c79673d4c15f55f1ab7f3d1809ddb}} 
+{\bfseries Game} (const \mbox{\hyperlink{class_game}{Game}} \&rhs)=delete
+\item 
+\mbox{\Hypertarget{class_game_a9bda5763ea460634fef947be2530c8f5}\label{class_game_a9bda5763ea460634fef947be2530c8f5}} 
+\mbox{\hyperlink{class_game}{Game}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_game}{Game}} \&rhs)=delete
+\item 
+\mbox{\Hypertarget{class_game_a16354d232327f6c21319713bf6983674}\label{class_game_a16354d232327f6c21319713bf6983674}} 
+virtual bool {\bfseries Initialize} () override
+\item 
+\mbox{\Hypertarget{class_game_aab13f3fdd19f7fec4d64922e36cf3088}\label{class_game_aab13f3fdd19f7fec4d64922e36cf3088}} 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{struct_render_item}{Render\+Item}} $>$ $>$ \& {\bfseries get\+Render\+Items} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_game_a0e53612a0a54bdd46ea1d8b071260b77}\label{class_game_a0e53612a0a54bdd46ea1d8b071260b77}} 
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::unique\+\_\+ptr$<$ Mesh\+Geometry $>$ $>$ {\bfseries m\+Geometries}
+\item 
+\mbox{\Hypertarget{class_game_a871400f233e46cc637f383106e89dd71}\label{class_game_a871400f233e46cc637f383106e89dd71}} 
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::unique\+\_\+ptr$<$ Material $>$ $>$ {\bfseries m\+Materials}
+\item 
+\mbox{\Hypertarget{class_game_a914940e399d2418018640ef3da130371}\label{class_game_a914940e399d2418018640ef3da130371}} 
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::unique\+\_\+ptr$<$ Texture $>$ $>$ {\bfseries m\+Textures}
+\item 
+\mbox{\Hypertarget{class_game_a5d821a872c24ff21b97300d24e37ac23}\label{class_game_a5d821a872c24ff21b97300d24e37ac23}} 
+std\+::unordered\+\_\+map$<$ std\+::string, Com\+Ptr$<$ ID3\+DBlob $>$ $>$ {\bfseries m\+Shaders}
+\item 
+\mbox{\Hypertarget{class_game_a43bb2ff24bf92a5d8dfb1a8ba110d33d}\label{class_game_a43bb2ff24bf92a5d8dfb1a8ba110d33d}} 
+std\+::unordered\+\_\+map$<$ std\+::string, Com\+Ptr$<$ ID3\+D12\+Pipeline\+State $>$ $>$ {\bfseries m\+PSOs}
+\item 
+\mbox{\Hypertarget{class_game_aa8184a727f9071c3db7e5efa3a6dce49}\label{class_game_aa8184a727f9071c3db7e5efa3a6dce49}} 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{struct_render_item}{Render\+Item}} $>$ $>$ {\bfseries m\+All\+Ritems}
+\item 
+\mbox{\Hypertarget{class_game_a76919fa066801494d7ec09b5a7c0eea9}\label{class_game_a76919fa066801494d7ec09b5a7c0eea9}} 
+std\+::vector$<$ \mbox{\hyperlink{struct_render_item}{Render\+Item}} $\ast$ $>$ {\bfseries m\+Ritem\+Layer} \mbox{[}(int) Render\+Layer\+::\+Count\mbox{]}
+\item 
+\mbox{\Hypertarget{class_game_a1633a90f20203779bc1a1171c2d7ad77}\label{class_game_a1633a90f20203779bc1a1171c2d7ad77}} 
+\mbox{\hyperlink{class_player}{Player}} {\bfseries m\+Player}
+\item 
+\mbox{\Hypertarget{class_game_adbc6dc1be92656b79625575a5d84e110}\label{class_game_adbc6dc1be92656b79625575a5d84e110}} 
+\mbox{\hyperlink{class_world}{World}} {\bfseries m\+World}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game.\+h\item 
+Game.\+cpp\end{DoxyCompactItemize}

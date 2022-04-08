@@ -1,0 +1,26 @@
+\hypertarget{_aircraft_mover_8h_source}{}\doxysection{Aircraft\+Mover.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}SceneNode.h"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}Common/d3dApp.h"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}Aircraft.h"{}}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{7 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_aircraft_mover}{AircraftMover}}}
+\DoxyCodeLine{8 \{}
+\DoxyCodeLine{9     }
+\DoxyCodeLine{11     \mbox{\hyperlink{struct_aircraft_mover_a8f47c770cff72273988f3d249839a533}{AircraftMover}}(\textcolor{keywordtype}{float} vx, \textcolor{keywordtype}{float} vy, \textcolor{keywordtype}{float} vz) :}
+\DoxyCodeLine{12         velocity(vx, vy, vz)}
+\DoxyCodeLine{13     \{}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15     \}}
+\DoxyCodeLine{17     \textcolor{keywordtype}{void} \mbox{\hyperlink{struct_aircraft_mover_a5a652d6b1e5e10f1cc92f3cdaed5bb8c}{operator() }}(\mbox{\hyperlink{class_scene_node}{SceneNode}}\& node, GameTimer)\textcolor{keyword}{ const}}
+\DoxyCodeLine{18 \textcolor{keyword}{    }\{}
+\DoxyCodeLine{19         \mbox{\hyperlink{class_aircraft}{Aircraft}}\& aircraft = \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{class_aircraft}{Aircraft}}\&\textcolor{keyword}{>}(node);}
+\DoxyCodeLine{20         aircraft.\mbox{\hyperlink{class_entity_a472e1690df5fb48c6c7f052e4cb39c78}{setVelocity}}(velocity);}
+\DoxyCodeLine{21     \}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     XMFLOAT3 velocity;}
+\DoxyCodeLine{24 \};}
+
+\end{DoxyCode}

@@ -28,7 +28,7 @@ void Player::handleEvent(CommandQueue& commands)
 	{
 		Command moveLeft;
 		moveLeft.category = Category::PlayerAircraft;
-		moveLeft.action = derivedAction<Aircraft>(AircraftMover(-playerSpeed, 0.f, 0.f));
+		moveLeft.action = derivedAction<Aircraft>(AircraftMover(-playerSpeed,  0.f, 0.f));
 		commands.push(moveLeft);
 	}
 
@@ -38,6 +38,38 @@ void Player::handleEvent(CommandQueue& commands)
 		moveRight.category = Category::PlayerAircraft;
 		moveRight.action = derivedAction<Aircraft>(AircraftMover(playerSpeed, 0.f, 0.f));
 		commands.push(moveRight);
+	}
+
+	else if (GetAsyncKeyState(Keyboard::Up))
+	{
+		Command moveForward;
+		moveForward.category = Category::PlayerAircraft;
+		moveForward.action = derivedAction<Aircraft>(AircraftMover(0.f, 0.f, playerSpeed));
+		commands.push(moveForward);
+	}
+
+	else if (GetAsyncKeyState(Keyboard::Down))
+	{
+		Command moveBack;
+		moveBack.category = Category::PlayerAircraft;
+		moveBack.action = derivedAction<Aircraft>(AircraftMover(0.f, 0.f, -playerSpeed));
+		commands.push(moveBack);
+	}
+
+	else if (GetAsyncKeyState(Keyboard::Space))
+	{
+		Command moveUp;
+		moveUp.category = Category::PlayerAircraft;
+		moveUp.action = derivedAction<Aircraft>(AircraftMover(0.f, playerSpeed, 0.f));
+		commands.push(moveUp);
+	}
+
+	else if (GetAsyncKeyState(Keyboard::LeftControl))
+	{
+		Command moveDown;
+		moveDown.category = Category::PlayerAircraft;
+		moveDown.action = derivedAction<Aircraft>(AircraftMover(0.f, -playerSpeed, 0.f));
+		commands.push(moveDown);
 	}
 
 	else

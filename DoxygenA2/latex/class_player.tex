@@ -1,0 +1,49 @@
+\hypertarget{class_player}{}\doxysection{Player Class Reference}
+\label{class_player}\index{Player@{Player}}
+
+
+\mbox{\hyperlink{class_player}{Player}} class, handles events and real time input and sends commands to the player game object.  
+
+
+
+
+{\ttfamily \#include $<$Player.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_player_a2da5df212d083bbb1460237f34ab0d88}\label{class_player_a2da5df212d083bbb1460237f34ab0d88}} 
+enum \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}} \{ \newline
+{\bfseries Move\+Left}
+, {\bfseries Move\+Right}
+, {\bfseries Move\+Up}
+, {\bfseries Move\+Down}
+, \newline
+{\bfseries Get\+Position}
+, {\bfseries Action\+Count}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum for different actions. More can be added. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_player_abdabbfe5ce0c04acf504ff5054dbcbc1}\label{class_player_abdabbfe5ce0c04acf504ff5054dbcbc1}} 
+void {\bfseries handle\+Event} (\mbox{\hyperlink{class_command_queue}{Command\+Queue}} \&commands)
+\begin{DoxyCompactList}\small\item\em Handles commands when a key HAS been pressed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_player_ac520744c103fb38763c8856b4f158627}\label{class_player_ac520744c103fb38763c8856b4f158627}} 
+void {\bfseries handle\+Realtime\+Input} (\mbox{\hyperlink{class_command_queue}{Command\+Queue}} \&commands)
+\begin{DoxyCompactList}\small\item\em Handles commands when a key IS being pressed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_player_ab4c90fedc58418d30be32bd4b497d2de}\label{class_player_ab4c90fedc58418d30be32bd4b497d2de}} 
+void {\bfseries assign\+Key} (\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}} action, Keyboard key)
+\begin{DoxyCompactList}\small\item\em Assigns an action to a key. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_player_a4277fcdf6ccdcc6fab12f61ff4e4f230}\label{class_player_a4277fcdf6ccdcc6fab12f61ff4e4f230}} 
+Keyboard {\bfseries get\+Assigned\+Key} (\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}} action) const
+\begin{DoxyCompactList}\small\item\em Returns key binded to passed in action. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_player}{Player}} class, handles events and real time input and sends commands to the player game object. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Player.\+h\item 
+Player.\+cpp\end{DoxyCompactItemize}
