@@ -31,7 +31,6 @@ void World::update(const GameTimer& gt)
 
 	XMFLOAT3 playerVelocity = mPlayerAirCraft->getVelocity();
 	XMFLOAT3 playerPosition = mPlayerAirCraft->getWorldPosition();
-	XMFLOAT3 playerRotation = mPlayerAirCraft->getWorldRotation();
 	XMFLOAT3 enemyVelocity = mEnemyAircraft->getVelocity();
 	XMFLOAT3 enemyPosition = mEnemyAircraft->getWorldPosition();
 	XMFLOAT3 enemy2Position = mEnemyAircraft2->getWorldPosition();

@@ -8,6 +8,7 @@
 #include "FrameResource.h"
 #include "World.h"
 #include "RenderLayer.h"
+#include "StateStack.h"
 
 using Microsoft::WRL::ComPtr;
 using namespace DirectX;
@@ -43,6 +44,8 @@ private:
     void UpdateMainPassCB(const GameTimer& gt);
     void processInput();
 
+    void registerStates();
+
     void LoadTextures();
     void BuildRootSignature();
     void BuildDescriptorHeaps();
@@ -69,6 +72,7 @@ public:
 
     Player mPlayer;
     World mWorld;
+    StateStack mStateStack;
 
 private:
 
