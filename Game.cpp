@@ -836,5 +836,6 @@ std::vector<std::unique_ptr<RenderItem>>& Game::getRenderItems()
 void Game::registerStates()
 {
 	mStateStack.registerState<TitleState>(States::Title);
+	mStateStack.registerState<TitleState>(States::Game);
 }
 
