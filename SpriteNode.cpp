@@ -1,9 +1,9 @@
 #include "SpriteNode.h"
 #include "Game.h"
 
-SpriteNode::SpriteNode(Game* game) : Entity(game)
+SpriteNode::SpriteNode(State* game) : Entity(game)
 {
-
+	buildCurrent();
 }
 
 void SpriteNode::drawCurrent() const
@@ -14,17 +14,17 @@ void SpriteNode::drawCurrent() const
 
 void SpriteNode::buildCurrent()
 {
-	auto render = std::make_unique<RenderItem>();
-	renderer = render.get();
+	//auto render = std::make_unique<RenderItem>();
+	renderer = new RenderItem();
 	renderer->World = getWorldTransform();
-	XMStoreFloat4x4(&render->TexTransform, XMMatrixScaling(1.0f, 1.0f, 1.0f));
-	renderer->ObjCBIndex = game->mAllRitems.size();
-	renderer->Mat = game->mMaterials["Desert"].get();
-	renderer->Geo = game->mGeometries["shapeGeo"].get();
+	renderer->ObjCBIndex = mState->getRenderItems().size();
+	renderer->Mat = mState->getContext().window->mMaterials["Desert"].get();
+	renderer->Geo = mState->getContext().window->mGeometries["shapeGeo"].get();
 	renderer->PrimitiveType = D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
-	renderer->IndexCount = render->Geo->DrawArgs["grid"].IndexCount;
-	renderer->StartIndexLocation = render->Geo->DrawArgs["grid"].StartIndexLocation;
-	renderer->BaseVertexLocation = render->Geo->DrawArgs["grid"].BaseVertexLocation;
-	game->mRitemLayer[(int)RenderLayer::Opaque].push_back(render.get());
-	game->mAllRitems.push_back(std::move(render));
+	renderer->IndexCount = renderer->Geo->DrawArgs["grid"].IndexCount;
+	renderer->StartIndexLocation = renderer->Geo->DrawArgs["grid"].StartIndexLocation;
+	renderer->BaseVertexLocation = renderer->Geo->DrawArgs["grid"].BaseVertexLocation;
+	//game->mRitemLayer[(int)RenderLayer::Transparent].push_back(render.get());
+	//game->mAllRitems.push_back(std::move(render));
+	mState->AddRenderItem(renderer);
 }

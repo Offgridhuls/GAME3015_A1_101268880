@@ -1,10 +1,10 @@
 #include "SceneNode.h"
 #include "Command.h"
 
-SceneNode::SceneNode(Game* game) //Scenenode Constructor
+SceneNode::SceneNode(State* state) //Scenenode Constructor
 	: mChildren(),
       mParent(nullptr),
-      game(game)
+      mState(state)
 {
 	mWorldPosition = XMFLOAT3(0, 0, 0); //Scenenode declaration for WorldPosition
 	mWorldScaling = XMFLOAT3(1, 1, 1);  //Scenenode declaration for WorldScaling

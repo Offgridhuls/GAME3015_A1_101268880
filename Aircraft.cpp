@@ -1,7 +1,8 @@
 #include "Aircraft.h"
 #include "Game.h"
+#include "State.h"
 
-Aircraft::Aircraft(Type type, Game* game) : Entity(game), mType(type)
+Aircraft::Aircraft(Type type, State* state) : Entity(nullptr), mType(type), mState(state)
 {
 	switch (type)
 	{
@@ -24,18 +25,19 @@ void Aircraft::drawCurrent() const
 
 void Aircraft::buildCurrent()
 {
-	auto render = std::make_unique<RenderItem>();
-	renderer = render.get();
+	
+	renderer = new RenderItem();
 	renderer->World = getWorldTransform();
-	renderer->ObjCBIndex = game->mAllRitems.size();
-	renderer->Mat = game->mMaterials[mSprite].get();
-	renderer->Geo = game->mGeometries["shapeGeo"].get();
+	renderer->ObjCBIndex = mState->getRenderItems().size();
+	renderer->Mat = mState->getContext().window->mMaterials[mSprite].get();
+	renderer->Geo = mState->getContext().window->mGeometries["shapeGeo"].get();
 	renderer->PrimitiveType = D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
-	renderer->IndexCount = render->Geo->DrawArgs["grid"].IndexCount;
-	renderer->StartIndexLocation = render->Geo->DrawArgs["grid"].StartIndexLocation;
-	renderer->BaseVertexLocation = render->Geo->DrawArgs["grid"].BaseVertexLocation;
-	game->mRitemLayer[(int)RenderLayer::Transparent].push_back(render.get());
-	game->mAllRitems.push_back(std::move(render));
+	renderer->IndexCount = renderer->Geo->DrawArgs["grid"].IndexCount;
+	renderer->StartIndexLocation = renderer->Geo->DrawArgs["grid"].StartIndexLocation;
+	renderer->BaseVertexLocation = renderer->Geo->DrawArgs["grid"].BaseVertexLocation;
+	//game->mRitemLayer[(int)RenderLayer::Transparent].push_back(render.get());
+	//game->mAllRitems.push_back(std::move(render));
+	mState->AddRenderItem(renderer);
 }
 
 unsigned int Aircraft::getCategory() const

@@ -2,13 +2,15 @@
 #include "Entity.h"
 #include "SceneNode.h"
 
+class State;
+
 //! Spritenode class, inherits Entity.
 class SpriteNode : public Entity
 {
 
 public:
 	//! Sprite node constructor.
-	SpriteNode(Game* game);
+	SpriteNode(State* game);
 
 	//! Is an item that is rendered into the scene.
 	RenderItem* mSpriteNodeRitem;

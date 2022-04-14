@@ -1,9 +1,9 @@
 #include "State.h"
 #include "StateStack.h"
-
-State::Context::Context(Game* window, Player& player)
+#include "Game.h"
+State::Context::Context(Game* window, Player* player)
 	: window(window)
-	, player(&player)
+	, player(player)
 {
 }
 
@@ -15,6 +15,17 @@ State::State(StateStack& stack, Context context)
 
 State::~State()
 {
+
+}
+
+std::vector<RenderItem*> State::getRenderItems()
+{
+	return mAllRitems;
+}
+
+void State::AddRenderItem(RenderItem* renderItem)
+{
+	mAllRitems.push_back(renderItem);
 }
 
 void State::requestStackPush(States::ID stateID)

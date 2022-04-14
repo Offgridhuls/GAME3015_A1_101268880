@@ -1,6 +1,7 @@
 #include "World.h"
+#include "State.h"
 
-World::World(Game* game) : mSceneGraph(new SceneNode(game)), mGame(game),
+World::World(State* state) : mSceneGraph(new SceneNode(state)), mGame(state),
 mPlayerAirCraft(nullptr),
 mEnemyAircraft(nullptr),
 mEnemyAircraft2(nullptr),

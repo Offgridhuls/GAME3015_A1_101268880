@@ -12,7 +12,9 @@ public:
 	virtual void draw();
 	virtual bool update(const GameTimer& gt);
 	virtual bool handleEvent(const Event& event);
-
+	virtual void ProcessInput();
+	virtual void buildScene();
+	virtual void OnKeyDown(WPARAM btnState)override;
 private:
 	World mWorld;
 	Player* mPlayer;

@@ -1,4 +1,5 @@
-﻿  Game.cpp
-  GameState.cpp
-  Generating Code...
-  TexWaves.vcxproj -> D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\x64\Debug\TexWaves.exe
+﻿  TitleState.cpp
+C:\Users\Julia\Desktop\Game Engine Development II\TexWaves\TitleState.cpp(16,2): warning C4477: 'sprintf' : format string '%i' requires an argument of type 'int', but variadic argument 1 has type 'unsigned __int64'
+C:\Users\Julia\Desktop\Game Engine Development II\TexWaves\TitleState.cpp(16,2): message : consider using '%zi' in the format string
+C:\Users\Julia\Desktop\Game Engine Development II\TexWaves\TitleState.cpp(16,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  TexWaves.vcxproj -> C:\Users\Julia\Desktop\Game Engine Development II\TexWaves\x64\Debug\TexWaves.exe

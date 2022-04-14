@@ -1,13 +1,14 @@
 #pragma once
 #include <iostream>
 #include "SceneNode.h"
+class State;
 
 //! Entity class, inherits Scenenode.
 class Entity : public SceneNode
 {
 public:
 	//! Entity constructor.
-	Entity(Game* game);
+	Entity(State* state);
 
 	//! Sets velocity of Entity. 
 	void setVelocity(XMFLOAT3 velocity);

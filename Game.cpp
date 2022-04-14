@@ -10,6 +10,7 @@
 #include "Game.h"
 #include "StateIdentifiers.h"
 #include "TitleState.h"
+#include "GameState.h"
 
 using Microsoft::WRL::ComPtr;
 using namespace DirectX;
@@ -26,8 +27,7 @@ const int gNumFrameResources = 3;
 
 Game::Game(HINSTANCE hInstance)
 	: D3DApp(hInstance),
-	mWorld(this),
-	mStateStack(State::Context(this, mPlayer))
+	mStateStack(State::Context(this, &mPlayer))
 {
 }
 
@@ -53,13 +53,13 @@ bool Game::Initialize()
 	BuildRootSignature();
 	BuildDescriptorHeaps();
 	BuildShadersAndInputLayout();
-	BuildShapeGeometry();
 	BuildMaterials();
-	BuildRenderItems();
-	BuildFrameResources();
-	BuildPSOs();
+	BuildShapeGeometry();
+	//BuildRenderItems();
+	//BuildFrameResources();
 	registerStates();
-	mStateStack.pushState(States::ID::Title);
+	mStateStack.pushState(States::Title);
+	BuildPSOs();
 
 	// Execute the initialization commands.
 	ThrowIfFailed(mCommandList->Close());
@@ -70,6 +70,15 @@ bool Game::Initialize()
 	FlushCommandQueue();
 
 	return true;
+}
+
+void Game::OnKeyDown(WPARAM btnState)
+{
+	for (decltype (auto) state : mStateStack.mStack)
+	{
+		state->OnKeyDown(btnState);
+	}
+	
 }
 
 void Game::OnResize()
@@ -84,10 +93,10 @@ void Game::OnResize()
 void Game::Update(const GameTimer& gt)
 {
 	OnKeyboardInput(gt);
-	mWorld.update(gt);
+	//mWorld.update(gt);
 	mStateStack.update(gt);
 	UpdateCamera(gt);
-	processInput();
+	//processInput();
 
 	// Cycle through the circular frame resource array.
 	mCurrFrameResourceIndex = (mCurrFrameResourceIndex + 1) % gNumFrameResources;
@@ -143,12 +152,15 @@ void Game::Draw(const GameTimer& gt)
 	auto passCB = mCurrFrameResource->PassCB->Resource();
 	mCommandList->SetGraphicsRootConstantBufferView(2, passCB->GetGPUVirtualAddress());
 
-	mCommandList->SetPipelineState(mPSOs["transparent"].Get());
-	DrawRenderItems(mCommandList.Get(), mRitemLayer[(int)RenderLayer::Opaque]);
-
-	DrawRenderItems(mCommandList.Get(), mRitemLayer[(int)RenderLayer::Transparent]);
+	mStateStack.draw();
+	mCommandList->SetPipelineState(mPSOs["opaque"].Get());
+	//DrawRenderItems(mCommandList.Get(), mRitemLayer[(int)RenderLayer::Opaque]);
+	//DrawRenderItems(mCommandList.Get(), mRitemLayer[(int)RenderLayer::Transparent]);
 	//
-
+	for (decltype (auto) sceneLayer : mStateStack.mStack)
+	{
+		DrawRenderItems(mCommandList.Get(), sceneLayer->getRenderItems());
+	}
 	// Indicate a state transition on the resource usage.
 	mCommandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(CurrentBackBuffer(),
 		D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT));
@@ -171,7 +183,7 @@ void Game::Draw(const GameTimer& gt)
 	// Because we are on the GPU timeline, the new fence point won't be 
 	// set until the GPU finishes processing all the commands prior to this Signal().
 	mCommandQueue->Signal(mFence.Get(), mCurrentFence);
-	mStateStack.draw();
+	//mStateStack.draw();
 }
 
 void Game::OnMouseDown(WPARAM btnState, int x, int y)
@@ -329,16 +341,8 @@ void Game::UpdateMainPassCB(const GameTimer& gt)
 	currPassCB->CopyData(0, mMainPassCB);
 }
 
-void Game::processInput()
-{
-	CommandQueue& commands = mWorld.getCommandQueue();
-	mPlayer.handleEvent(commands);
-	mPlayer.handleRealtimeInput(commands);
-}
-
 void Game::LoadTextures()
 {
-	mWorld.loadTextures(md3dDevice, mCommandList, mTextures);
 
 	auto TitleTex = std::make_unique<Texture>();
 	TitleTex->Name = "TitleTex";
@@ -346,33 +350,40 @@ void Game::LoadTextures()
 	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
 		mCommandList.Get(), TitleTex->Filename.c_str(),
 		TitleTex->Resource, TitleTex->UploadHeap));
+		mTextures[TitleTex->Name] = std::move(TitleTex);
 
-	//auto EagleTex = std::make_unique<Texture>();
-	//EagleTex->Name = "EagleTex";
-	//EagleTex->Filename = L"Textures/Eagle.dds";
-	//ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
-	//	mCommandList.Get(), EagleTex->Filename.c_str(),
-	//	EagleTex->Resource, EagleTex->UploadHeap));
-	//
-	//auto DesertTex = std::make_unique<Texture>();
-	//DesertTex->Name = "DesertTex";
-	//DesertTex->Filename = L"Textures/Desert.dds";
-	//ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
-	//	mCommandList.Get(), DesertTex->Filename.c_str(),
-	//	DesertTex->Resource, DesertTex->UploadHeap));
-	//
-	//auto tileTex = std::make_unique<Texture>();
-	//tileTex->Name = "tileTex";
-	//tileTex->Filename = L"Textures/tile.dds";
-	//ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
-	//	mCommandList.Get(), tileTex->Filename.c_str(),
-	//	tileTex->Resource, tileTex->UploadHeap));
-	//
-	//mTextures[EagleTex->Name] = std::move(EagleTex);
-	//mTextures[DesertTex->Name] = std::move(DesertTex);
-	//mTextures[tileTex->Name] = std::move(tileTex);
+	auto EagleTex = std::make_unique<Texture>();
+	EagleTex->Name = "EagleTex";
+	EagleTex->Filename = L"Textures/Eagle.dds";
+	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
+		mCommandList.Get(), EagleTex->Filename.c_str(),
+		EagleTex->Resource, EagleTex->UploadHeap));
 
-	mTextures[TitleTex->Name] = std::move(TitleTex);
+	auto RaptorTex = std::make_unique<Texture>();
+	RaptorTex->Name = "RaptorTex";
+	RaptorTex->Filename = L"Textures/Raptor.dds";
+	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
+		mCommandList.Get(), RaptorTex->Filename.c_str(),
+		RaptorTex->Resource, RaptorTex->UploadHeap));
+
+	auto DesertTex = std::make_unique<Texture>();
+	DesertTex->Name = "DesertTex";
+	DesertTex->Filename = L"Textures/Desert.dds";
+	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
+		mCommandList.Get(), DesertTex->Filename.c_str(),
+		DesertTex->Resource, DesertTex->UploadHeap));
+
+	auto tileTex = std::make_unique<Texture>();
+	tileTex->Name = "tileTex";
+	tileTex->Filename = L"Textures/tile.dds";
+	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
+		mCommandList.Get(), tileTex->Filename.c_str(),
+		tileTex->Resource, tileTex->UploadHeap));
+
+	mTextures[EagleTex->Name] = std::move(EagleTex);
+	mTextures[RaptorTex->Name] = std::move(RaptorTex);
+	mTextures[DesertTex->Name] = std::move(DesertTex);
+	mTextures[tileTex->Name] = std::move(tileTex);
 }
 
 void Game::BuildRootSignature()
@@ -668,12 +679,12 @@ void Game::BuildPSOs()
 
 }
 
-void Game::BuildFrameResources()
+void Game::BuildFrameResources(UINT size)
 {
 	for (int i = 0; i < gNumFrameResources; ++i)
 	{
 		mFrameResources.push_back(std::make_unique<FrameResource>(md3dDevice.Get(),
-			1, (UINT)mAllRitems.size(), (UINT)mMaterials.size()));
+			1, size, (UINT)mMaterials.size()));
 	}
 }
 
@@ -730,8 +741,8 @@ void Game::BuildMaterials()
 
 void Game::BuildRenderItems()
 {
-	mWorld.buildScene();
-	mStateStack.buildScene();
+	//mWorld.buildScene();
+	//mStateStack.buildScene();
 
 	//for (auto& e : mAllRitems)
 	//	mRitemLayer[(int)RenderLayer::Opaque].push_back(e.get());
@@ -836,6 +847,6 @@ std::vector<std::unique_ptr<RenderItem>>& Game::getRenderItems()
 void Game::registerStates()
 {
 	mStateStack.registerState<TitleState>(States::Title);
-	mStateStack.registerState<TitleState>(States::Game);
+	mStateStack.registerState<GameState>(States::Game);
 }
 

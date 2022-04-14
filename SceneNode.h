@@ -52,6 +52,7 @@ struct RenderItem
 
 class Game;
 struct Command;
+class State;
 
 //! Scene node class, initialize a Scenenode using this class.
 class SceneNode 
@@ -60,7 +61,7 @@ public:
 	typedef std::unique_ptr<SceneNode> Ptr;
 
 public:
-	SceneNode(Game* game); //Scenenode Constructor
+	SceneNode(State* game); //Scenenode Constructor
 
 	void onCommand(const Command& command, GameTimer dt);
 	virtual unsigned int getCategory() const;
@@ -123,7 +124,7 @@ private:
 
 protected:
 	//! Reference to game class.
-	Game* game;
+	State* mState;
 
 	//! Reference to renderer.
 	RenderItem* renderer;

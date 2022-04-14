@@ -1,5 +1,8 @@
 #include "Entity.h"
-Entity::Entity(Game* game) : SceneNode(game), mVelocity(0,0,0)
+#include "State.h"
+
+
+Entity::Entity(State* state) : SceneNode(state), mVelocity(0,0,0)
 {
 	
 }

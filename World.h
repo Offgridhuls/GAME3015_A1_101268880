@@ -6,12 +6,13 @@
 #include "CommandQueue.h"
 #include "Command.h"
 
+class State;
 //! World class. Initialize our world in here.
 class World
 {
 public:
 	//! World constructor takes in a game class to initialize our world.
-	explicit World(Game* window);
+	explicit World(State* window);
 
 	//! Updates world.
 	void update(const GameTimer& gt);
@@ -40,7 +41,7 @@ public:
 private:
 	CommandQueue mCommandQueue;
 	//! Reference to game class.
-	Game* mGame;
+	State* mGame;
 
 	//! Reference to parent scene node.
 	SceneNode* mSceneGraph;

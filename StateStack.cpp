@@ -1,4 +1,5 @@
 #include "StateStack.h"
+#include "Game.h"
 
 StateStack::StateStack(State::Context context)
 	: mStack()
@@ -80,6 +81,7 @@ void StateStack::applyPendingChanges()
 		switch (change.action)
 		{
 		case Push:
+			mContext.window->FlushCommandQueue();
 			mStack.push_back(createState(change.stateID));
 			break;
 

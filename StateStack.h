@@ -45,6 +45,8 @@ public:
 
 	bool isEmpty() const;
 
+	std::vector<State::Ptr> mStack;
+
 private:
 	State::Ptr createState(States::ID stateID);
 	void applyPendingChanges();
@@ -57,9 +59,7 @@ private:
 		Action action;
 		States::ID stateID;
 	};
-
 private:
-	std::vector<State::Ptr> mStack;
 	std::vector<PendingChange> mPendingList;
 
 	State::Context mContext;

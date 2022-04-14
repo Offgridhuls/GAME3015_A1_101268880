@@ -10,6 +10,8 @@
 #include "RenderLayer.h"
 #include "StateStack.h"
 
+#define PRINTF(...) {char cad[512]; sprintf(cad, __VA_ARGS__);  OutputDebugStringA(cad);}
+
 using Microsoft::WRL::ComPtr;
 using namespace DirectX;
 using namespace DirectX::PackedVector;
@@ -26,6 +28,8 @@ public:
     ~Game();
 
     virtual bool Initialize()override;
+    virtual void OnKeyDown(WPARAM btnState)override;
+    
 
 private:
     virtual void OnResize()override;
@@ -42,7 +46,7 @@ private:
     void UpdateObjectCBs(const GameTimer& gt);
     void UpdateMaterialCBs(const GameTimer& gt);
     void UpdateMainPassCB(const GameTimer& gt);
-    void processInput();
+    //void processInput();
 
     void registerStates();
 
@@ -52,8 +56,6 @@ private:
     void BuildShadersAndInputLayout();
     void BuildShapeGeometry();
     void BuildPSOs();
-    void BuildFrameResources();
-    void BuildMaterials();
     void BuildRenderItems();
     void DrawRenderItems(ID3D12GraphicsCommandList* cmdList, const std::vector<RenderItem*>& ritems);
 
@@ -68,15 +70,16 @@ public:
     std::vector<std::unique_ptr<RenderItem>> mAllRitems;
     std::vector<std::unique_ptr<RenderItem>>& getRenderItems();
     std::vector<RenderItem*> mRitemLayer[(int)RenderLayer::Count];
-
+    std::vector<std::unique_ptr<FrameResource>> mFrameResources;
+    void BuildMaterials();
+    void BuildFrameResources(UINT size);
 
     Player mPlayer;
-    World mWorld;
+    //World mWorld;
     StateStack mStateStack;
 
 private:
 
-    std::vector<std::unique_ptr<FrameResource>> mFrameResources;
     FrameResource* mCurrFrameResource = nullptr;
     int mCurrFrameResourceIndex = 0;
 

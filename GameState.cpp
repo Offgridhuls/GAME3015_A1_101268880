@@ -1,10 +1,18 @@
 #include "GameState.h"
+#include "Game.h"
 
 GameState::GameState(StateStack& stack, Context context)
 	: State(stack, context)
-	, mWorld(context.window)
+	, mWorld(this)
 	, mPlayer(context.player)
 {
+	mAllRitems.clear();
+	mContext.window->mFrameResources.clear();
+	mContext.window->BuildMaterials();
+
+	mWorld.buildScene();
+	PRINTF("Game state\n");
+	context.window->BuildFrameResources((UINT)mAllRitems.size());
 }
 
 void GameState::draw()
@@ -27,4 +35,19 @@ bool GameState::handleEvent(const Event& event)
 	mPlayer->handleEvent(commands);
 
 	return true;
+}
+
+void GameState::ProcessInput()
+{
+
+}
+
+void GameState::buildScene()
+{
+
+}
+
+void GameState::OnKeyDown(WPARAM btnState)
+{
+
 }

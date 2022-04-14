@@ -41,6 +41,7 @@ public:
  
     virtual bool Initialize();
     virtual LRESULT MsgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
+	void FlushCommandQueue();
 
 protected:
     virtual void CreateRtvAndDsvDescriptorHeaps();
@@ -52,6 +53,7 @@ protected:
 	virtual void OnMouseDown(WPARAM btnState, int x, int y){ }
 	virtual void OnMouseUp(WPARAM btnState, int x, int y)  { }
 	virtual void OnMouseMove(WPARAM btnState, int x, int y){ }
+    virtual void OnKeyDown(WPARAM btnState) {}
 
 protected:
 
@@ -59,8 +61,6 @@ protected:
 	bool InitDirect3D();
 	void CreateCommandObjects();
     void CreateSwapChain();
-
-	void FlushCommandQueue();
 
 	ID3D12Resource* CurrentBackBuffer()const;
 	D3D12_CPU_DESCRIPTOR_HANDLE CurrentBackBufferView()const;

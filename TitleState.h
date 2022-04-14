@@ -14,6 +14,8 @@ public:
 	virtual void buildScene();
 	virtual bool update(const GameTimer& gt);
 	virtual bool handleEvent(const Event& event);
+	virtual void ProcessInput();
+	virtual void OnKeyDown(WPARAM btnState);
 
 private:
 	SpriteNode* mBackground;
