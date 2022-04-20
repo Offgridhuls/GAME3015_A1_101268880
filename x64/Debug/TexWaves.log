@@ -1,2 +1,19 @@
-﻿  World.cpp
+﻿  Aircraft.cpp
+  Game.cpp
+  GameState.cpp
+D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\GameState.cpp(14,55): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  MenuState.cpp
+D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\MenuState.cpp(18,58): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  PauseState.cpp
+D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\PauseState.cpp(18,58): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  Player.cpp
+  SceneNode.cpp
+  SpriteNode.cpp
+  State.cpp
+  StateStack.cpp
+  TitleState.cpp
+D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\TitleState.cpp(19,58): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  World.cpp
+  main.cpp
+  Generating Code...
   TexWaves.vcxproj -> D:\Sem 6\Game Engine Dev II\Assignments\a1-final\A1\GAME3015_A1_101268880\x64\Debug\TexWaves.exe
