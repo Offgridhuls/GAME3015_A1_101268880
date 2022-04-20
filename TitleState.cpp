@@ -11,7 +11,7 @@ TitleState::TitleState(StateStack* stack, Context* context)
 
     std::unique_ptr<SpriteNode> backgroundSprite = std::make_unique<SpriteNode>(this);
     backgroundSprite->SetMatGeoDrawName("Title", "shapeGeo", "box");
-    backgroundSprite->setScale(11.5, 1.0, 10.0);
+    backgroundSprite->setScale(11.5, 1.0, 9.0);
     backgroundSprite->setPosition(0, 0, 0);
     mSceneGraph->attachChild(std::move(backgroundSprite));
 
@@ -40,7 +40,7 @@ bool TitleState::handleEvent(WPARAM btnState)
     // Any Key
     //
     requestStackPop();
-    requestStackPush(States::Game);
+    requestStackPush(States::Menu);
     return true;
 }
 

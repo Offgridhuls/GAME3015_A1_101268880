@@ -20,9 +20,6 @@ public:
 private:
 	CommandQueue						mCommandQueue;
 
-	void								adaptPlayerPosition();
-	void								adaptPlayerVelocity();
-
 
 private:
 	enum class Layer

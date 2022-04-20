@@ -1,6 +1,8 @@
 #include "Game.h"
 #include "GameState.h"
 #include "TitleState.h"
+#include "MenuState.h"
+#include "PauseState.h"
 #include "StateIdentifiers.h"
 
 const int gNumFrameResources = 1;
@@ -139,6 +141,8 @@ void Game::Draw(const GameTimer& gt)
 
 	auto passCB = mCurrFrameResource->PassCB->Resource();
 	mCommandList->SetGraphicsRootConstantBufferView(2, passCB->GetGPUVirtualAddress());
+
+
 
 	mStateStack.draw();
 	//DrawRenderItems(mCommandList.Get(), mOpaqueRitems);
@@ -335,6 +339,11 @@ void Game::LoadTextures()
 	CreateTexture("DesertTex", L"Textures/Desert.dds");
 
 	CreateTexture("Title", L"Textures/Title.dds");
+
+	CreateTexture("Menu", L"Textures/MenuScreen.dds");
+
+	CreateTexture("Pause", L"Textures/PauseScreen.dds");
+
 }
 
 void Game::CreateTexture(std::string Name, std::wstring FileName)
@@ -398,7 +407,7 @@ void Game::BuildDescriptorHeaps()
 	// Create the SRV heap.
 	//
 	D3D12_DESCRIPTOR_HEAP_DESC srvHeapDesc = {};
-	srvHeapDesc.NumDescriptors = 4;
+	srvHeapDesc.NumDescriptors = 6;
 	srvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
 	srvHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
 	ThrowIfFailed(md3dDevice->CreateDescriptorHeap(&srvHeapDesc, IID_PPV_ARGS(&mSrvDescriptorHeap)));
@@ -412,6 +421,8 @@ void Game::BuildDescriptorHeaps()
 	auto RaptorTex = mTextures["RaptorTex"]->Resource;
 	auto DesertTex = mTextures["DesertTex"]->Resource;
 	auto Title = mTextures["Title"]->Resource;
+	auto Menu = mTextures["Menu"]->Resource;
+	auto Pause = mTextures["Pause"]->Resource;
 
 	D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
 
@@ -447,11 +458,20 @@ void Game::BuildDescriptorHeaps()
 	srvDesc.Format = DesertTex->GetDesc().Format;
 	md3dDevice->CreateShaderResourceView(DesertTex.Get(), &srvDesc, hDescriptor);
 
-	//StarWars Descriptor
+	//Title Descriptor
 	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
 	srvDesc.Format = Title->GetDesc().Format;
 	md3dDevice->CreateShaderResourceView(Title.Get(), &srvDesc, hDescriptor);
-	//StarWars Descriptor
+
+	//Menu Descriptor
+	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
+	srvDesc.Format = Menu->GetDesc().Format;
+	md3dDevice->CreateShaderResourceView(Menu.Get(), &srvDesc, hDescriptor);
+
+	//Pause Descriptor
+	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
+	srvDesc.Format = Pause->GetDesc().Format;
+	md3dDevice->CreateShaderResourceView(Pause.Get(), &srvDesc, hDescriptor);
 }
 
 void Game::BuildShadersAndInputLayout()
@@ -576,6 +596,8 @@ void Game::BuildMaterials()
 	CreateMaterials("Raptor", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);
 	CreateMaterials("Desert", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);
 	CreateMaterials("Title", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);
+	CreateMaterials("Menu", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);
+	CreateMaterials("Pause", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);
 }
 
 void Game::CreateMaterials(std::string Name, XMFLOAT4 DiffuseAlbedo, XMFLOAT3 FresnelR0, float Roughness)
@@ -595,6 +617,8 @@ void Game::RegisterStates()
 {
 	mStateStack.registerState<TitleState>(States::Title);
 	mStateStack.registerState<GameState>(States::Game);
+	mStateStack.registerState<MenuState>(States::Menu);
+	mStateStack.registerState<PauseState>(States::Pause);
 }
 
 std::array<const CD3DX12_STATIC_SAMPLER_DESC, 6> Game::GetStaticSamplers()
