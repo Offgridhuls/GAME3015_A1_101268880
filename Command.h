@@ -1,29 +1,32 @@
+
 #pragma once
-#include <functional>
-#include "Common/d3dApp.h"
-#include <cassert>
 #include "Category.h"
 
-class SceneNode;
+#include "Common/d3dApp.h"
 
-//! Command struct, has an action and a category.
+#include <functional>
+#include <cassert>
+
+class SceneNode;
+class Game;
+
 struct Command
 {
 	Command();
 
-	std::function<void(SceneNode&, GameTimer)> action;
-	unsigned int category;
+	std::function<void(SceneNode&, const GameTimer&)>	action;
+	unsigned int								category;
 };
 
-//! Checks if there's a node and a derived action
 template <typename GameObject, typename Function>
-std::function<void(SceneNode&, GameTimer)> derivedAction(Function fn)
+std::function<void(SceneNode&, const GameTimer&)> derivedAction(Function fn)
 {
-	return [=](SceneNode& node, GameTimer dt)
+	return [=](SceneNode& node, const GameTimer& gt) //cannot convert from 'derived Action::<lambda ae70999ce770862bd1b8049a4852b029>' to 'std::function<void (SceneNode &,const GameTimer &)>
 	{
+		// Check if cast is safe
 		assert(dynamic_cast<GameObject*>(&node) != nullptr);
 
-		fn(static_cast<GameObject&>(node), dt);
+		// Downcast node and invoke function on it
+		fn(static_cast<GameObject&>(node), gt);
 	};
-
 }

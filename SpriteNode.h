@@ -1,26 +1,21 @@
 #pragma once
 #include "Entity.h"
-#include "SceneNode.h"
 
-class State;
 
-//! Spritenode class, inherits Entity.
-class SpriteNode : public Entity
+class SpriteNode :
+	public Entity
 {
-
 public:
-	//! Sprite node constructor.
-	SpriteNode(State* game);
-
-	//! Is an item that is rendered into the scene.
+	SpriteNode(State* state);
 	RenderItem* mSpriteNodeRitem;
 
-	//std::vector<RenderItem*> mRitemLayer[(int)RenderLayer::Count];
+	void SetMatGeoDrawName(std::string Mat, std::string Geo, std::string DrawName);
+
 private:
-	//! Does nothing.
-	virtual void drawCurrent() const;
+	virtual void		drawCurrent() const;
+	virtual void		buildCurrent();
 
-	//! Builds the node.
-	virtual void buildCurrent();
+	std::string mMat;
+	std::string mGeo;
+	std::string mDrawName;
 };
-

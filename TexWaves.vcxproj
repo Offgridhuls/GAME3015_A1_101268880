@@ -143,8 +143,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Aircraft.cpp" />
-    <ClCompile Include="AircraftMover.cpp" />
-    <ClCompile Include="Application.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="CommandQueue.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -174,7 +172,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Aircraft.h" />
-    <ClInclude Include="AircraftMover.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="Category.h" />
     <ClInclude Include="Command.h" />
@@ -195,7 +192,6 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="RenderLayer.h" />
     <ClInclude Include="SceneNode.h" />
     <ClInclude Include="SpriteNode.h" />
     <ClInclude Include="State.h" />

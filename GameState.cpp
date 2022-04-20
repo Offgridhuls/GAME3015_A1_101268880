@@ -1,18 +1,23 @@
 #include "GameState.h"
 #include "Game.h"
 
-GameState::GameState(StateStack& stack, Context context)
+GameState::GameState(StateStack* stack, Context* context)
 	: State(stack, context)
 	, mWorld(this)
-	, mPlayer(context.player)
 {
 	mAllRitems.clear();
-	mContext.window->mFrameResources.clear();
-	mContext.window->BuildMaterials();
+	mContext->game->ResetFrameResources();
+	mContext->game->BuildMaterials();
 
 	mWorld.buildScene();
-	PRINTF("Game state\n");
-	context.window->BuildFrameResources((UINT)mAllRitems.size());
+
+	mContext->game->BuildFrameResources(mAllRitems.size());
+
+	
+}
+
+GameState::~GameState()
+{
 }
 
 void GameState::draw()
@@ -22,32 +27,33 @@ void GameState::draw()
 
 bool GameState::update(const GameTimer& gt)
 {
+	ProcessInput();
+
 	mWorld.update(gt);
-	CommandQueue& commands = mWorld.getCommandQueue();
-	mPlayer->handleRealtimeInput(commands);
 
 	return true;
 }
 
-bool GameState::handleEvent(const Event& event)
+bool GameState::handleEvent(WPARAM btnState)
 {
-	CommandQueue& commands = mWorld.getCommandQueue();
-	mPlayer->handleEvent(commands);
+	if (d3dUtil::IsKeyDown('P'))
+	{
+		requestStackPop();
+		requestStackPush(States::Pause);
+	}
 
+	return true;
+}
+
+bool GameState::handleRealtimeInput()
+{
+	// Nothing for now
 	return true;
 }
 
 void GameState::ProcessInput()
 {
-
-}
-
-void GameState::buildScene()
-{
-
-}
-
-void GameState::OnKeyDown(WPARAM btnState)
-{
-
+	CommandQueue& commands = mWorld.getCommandQueue();
+	mContext->player->handleEvent(commands);
+	mContext->player->handleRealtimeInput(commands);
 }

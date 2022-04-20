@@ -1,25 +1,15 @@
 #pragma once
 #include "State.h"
-#include "SpriteNode.h"
-#include "Event.h"
-
-class Game;
-
-class TitleState : public State
+class TitleState :
+    public State
 {
 public:
-	TitleState(StateStack& stack, Context context);
+    TitleState(StateStack* stack, Context* context);
+    virtual ~TitleState();
+    virtual void draw()override;
+    virtual bool update(const GameTimer& gt)override;
+    virtual bool handleEvent(WPARAM btnState)override;
+    virtual bool handleRealtimeInput()override;
 
-	virtual void draw();
-	virtual void buildScene();
-	virtual bool update(const GameTimer& gt);
-	virtual bool handleEvent(const Event& event);
-	virtual void ProcessInput();
-	virtual void OnKeyDown(WPARAM btnState);
-
-private:
-	SpriteNode* mBackground;
-	SceneNode* mSceneGraph;
-
-	bool mShowText;
 };
+

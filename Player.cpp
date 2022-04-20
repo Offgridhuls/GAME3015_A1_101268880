@@ -2,19 +2,50 @@
 #include "Player.h"
 #include "CommandQueue.h"
 #include "Aircraft.h"
-
+#include "Common/MathHelper.h"
+#include "Common/d3dApp.h"
 #include <map>
 #include <string>
 #include <algorithm>
-#include <iostream>
+#include <stdio.h>
+
+using namespace DirectX;
+struct AircraftMover
+{
+	AircraftMover(float vx, float vy, float vz)
+		: velocity(vx, vy, vz)
+	{
+	}
+
+	void operator() (Aircraft& aircraft, const GameTimer&) const
+	{
+		aircraft.setVelocity(velocity);
+	}
+
+	XMFLOAT3 velocity;
+};
 
 Player::Player()
 {
-	mKeyBinding[Keyboard::Left] = MoveLeft;
-	mKeyBinding[Keyboard::Right] = MoveRight;
+	// Set initial key bindings
+
+	mKeyBinding[VK_LEFT] = MoveLeft;
+	mKeyBinding[VK_RIGHT] = MoveRight;
+	mKeyBinding[VK_UP] = MoveUp;
+	mKeyBinding[VK_DOWN] = MoveDown;
+
+	/*mKeyBinding['A'] = MoveLeft;
+	mKeyBinding['D'] = MoveRight;
+	mKeyBinding['W'] = MoveUp;
+	mKeyBinding['S'] = MoveDown;*/
 
 	// Set initial action bindings
 	initializeActions();
+
+	for (auto pair : mKeyBinding)
+	{
+		mKeyFlag[pair.first] = false;
+	}
 
 	// Assign all categories to player's aircraft
 	for (auto& pair : mActionBinding)
@@ -23,61 +54,26 @@ Player::Player()
 
 void Player::handleEvent(CommandQueue& commands)
 {
-	const float playerSpeed = 10.f;
-	if (GetAsyncKeyState(Keyboard::Left))
+	for (auto pair : mKeyBinding)
 	{
-		Command moveLeft;
-		moveLeft.category = Category::PlayerAircraft;
-		moveLeft.action = derivedAction<Aircraft>(AircraftMover(-playerSpeed,  0.f, 0.f));
-		commands.push(moveLeft);
-	}
-
-	else if (GetAsyncKeyState(Keyboard::Right))
-	{
-		Command moveRight;
-		moveRight.category = Category::PlayerAircraft;
-		moveRight.action = derivedAction<Aircraft>(AircraftMover(playerSpeed, 0.f, 0.f));
-		commands.push(moveRight);
-	}
-
-	else if (GetAsyncKeyState(Keyboard::Up))
-	{
-		Command moveForward;
-		moveForward.category = Category::PlayerAircraft;
-		moveForward.action = derivedAction<Aircraft>(AircraftMover(0.f, 0.f, playerSpeed));
-		commands.push(moveForward);
-	}
-
-	else if (GetAsyncKeyState(Keyboard::Down))
-	{
-		Command moveBack;
-		moveBack.category = Category::PlayerAircraft;
-		moveBack.action = derivedAction<Aircraft>(AircraftMover(0.f, 0.f, -playerSpeed));
-		commands.push(moveBack);
-	}
-
-	else if (GetAsyncKeyState(Keyboard::Space))
-	{
-		Command moveUp;
-		moveUp.category = Category::PlayerAircraft;
-		moveUp.action = derivedAction<Aircraft>(AircraftMover(0.f, playerSpeed, 0.f));
-		commands.push(moveUp);
-	}
-
-	else if (GetAsyncKeyState(Keyboard::LeftControl))
-	{
-		Command moveDown;
-		moveDown.category = Category::PlayerAircraft;
-		moveDown.action = derivedAction<Aircraft>(AircraftMover(0.f, -playerSpeed, 0.f));
-		commands.push(moveDown);
-	}
-
-	else
-	{
-		Command dontMove;
-		dontMove.category = Category::PlayerAircraft;
-		dontMove.action = derivedAction<Aircraft>(AircraftMover(0.f, 0.f, 0.f));
-		commands.push(dontMove);
+		if (!isRealtimeAction(pair.second))
+		{
+			if (mKeyFlag[pair.first])
+			{
+				if (!GetAsyncKeyState(pair.first))
+				{
+					mKeyFlag[pair.first] = false; // RELEASED
+				}
+			}
+			else
+			{
+				if (GetAsyncKeyState(pair.first) & 0x8000)
+				{
+					mKeyFlag[pair.first] = true; // PRESSED
+					commands.push(mActionBinding[pair.second]);
+				}
+			}
+		}
 	}
 }
 
@@ -85,23 +81,14 @@ void Player::handleRealtimeInput(CommandQueue& commands)
 {
 	for (auto pair : mKeyBinding)
 	{
-		// If key is pressed, lookup action and trigger corresponding command
-		if (GetAsyncKeyState(pair.first) && isRealtimeAction(pair.second))
-		commands.push(mActionBinding[pair.second]);
+		if (GetAsyncKeyState(pair.first) & 0x8000 && isRealtimeAction(pair.second))
+		{
+			commands.push(mActionBinding[pair.second]); // HOLDING DOWN
+		}
 	}
 }
 
-void Player::initializeActions()
-{
-
-	const float playerSpeed = 200.f;
-
-	mActionBinding[MoveLeft].action = derivedAction<Aircraft>(AircraftMover(-.1f * playerSpeed, .0f, .0f));
-	mActionBinding[MoveRight].action = derivedAction<Aircraft>(AircraftMover(.1f * playerSpeed, .0f, .0f));
-
-}
-
-void Player::assignKey(Action action, Keyboard key)
+void Player::assignKey(Action action, char key)
 {
 	// Remove all keys that already map to action
 	for (auto itr = mKeyBinding.begin(); itr != mKeyBinding.end(); )
@@ -114,6 +101,45 @@ void Player::assignKey(Action action, Keyboard key)
 
 	// Insert new binding
 	mKeyBinding[key] = action;
+}
+
+char Player::getAssignedKey(Action action) const
+{
+	for (auto pair : mKeyBinding)
+	{
+		if (pair.second == action)
+			return pair.first;
+	}
+
+	return 0x00;
+}
+
+void Player::remapKeys(int choice)
+{
+	if (choice == 1)
+	{
+		assignKey(MoveLeft, VK_LEFT);
+		assignKey(MoveRight, VK_RIGHT);
+		assignKey(MoveUp, VK_UP);
+		assignKey(MoveDown, VK_DOWN);
+	}
+	else if (choice == 2)
+	{
+		assignKey(MoveLeft, 'A');
+		assignKey(MoveRight, 'D');
+		assignKey(MoveUp, 'W');
+		assignKey(MoveDown, 'S');
+	}
+}
+
+void Player::initializeActions()
+{
+	const float playerSpeed = 5.f;
+
+	mActionBinding[MoveLeft].action = derivedAction<Aircraft>(AircraftMover(-playerSpeed, 0.f, 0.0f));
+	mActionBinding[MoveRight].action = derivedAction<Aircraft>(AircraftMover(+playerSpeed, 0.f, 0.0f));
+	mActionBinding[MoveUp].action = derivedAction<Aircraft>(AircraftMover(0.f, 0.0f, +playerSpeed));
+	mActionBinding[MoveDown].action = derivedAction<Aircraft>(AircraftMover(0.f, 0.0f, -playerSpeed));
 }
 
 bool Player::isRealtimeAction(Action action)
@@ -130,3 +156,5 @@ bool Player::isRealtimeAction(Action action)
 		return false;
 	}
 }
+
+#pragma endregion

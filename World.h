@@ -2,73 +2,46 @@
 #include "SceneNode.h"
 #include "Aircraft.h"
 #include "SpriteNode.h"
-#include "RenderLayer.h"
 #include "CommandQueue.h"
 #include "Command.h"
 
-class State;
-//! World class. Initialize our world in here.
+
 class World
 {
 public:
-	//! World constructor takes in a game class to initialize our world.
-	explicit World(State* window);
-
-	//! Updates world.
-	void update(const GameTimer& gt);
-
-	//! Draws world.
-	void draw();
-
-	//! Load textures of world.
-	void loadTextures(Microsoft::WRL::ComPtr<ID3D12Device>& GameDevice,
-		Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList>& CommandList,
-		std::unordered_map<std::string, std::unique_ptr<Texture>>& GameTextures);
-
-	//! Builds materials of world.
-	void buildMaterials(std::unordered_map<std::string, std::unique_ptr<Material>>& GameMaterials);
-
-	//! Builds some shape geometry for our game world. (Some un-needed).
-	void buildShapeGeometry(Microsoft::WRL::ComPtr<ID3D12Device>& GameDevice,
-		Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList>& CommandList,
-		std::unordered_map<std::string, std::unique_ptr<MeshGeometry>>& GameGeometries);
-
-	//! Builds scene.
-	void buildScene();
+	explicit							World(State* state);
+	void								update(const GameTimer& gt);
+	void								draw();
+	//void								loadTextures();
+	void								buildScene();
 
 	CommandQueue& getCommandQueue();
 
 private:
-	CommandQueue mCommandQueue;
-	//! Reference to game class.
-	State* mGame;
+	CommandQueue						mCommandQueue;
 
-	//! Reference to parent scene node.
+	void								adaptPlayerPosition();
+	void								adaptPlayerVelocity();
+
+
+private:
+	enum class Layer
+	{
+		Background,
+		Air
+	};
+
+
+private:
+	State* mState;
+
 	SceneNode* mSceneGraph;
+	std::array<SceneNode*, 2>	mSceneLayers;
 
-	//! Scene layers.
-	std::array<SceneNode*, RenderLayer::Count> mSceneLayers;
-
-	//! World bounds.
-	XMFLOAT4 mWorldBounds;
-
-	//! Spawn position.
-	XMFLOAT2 mSpawnPosition;
-
-	//! Scroll speed of world.
-	float mScrollSpeed;
-
-	//! Player aircraft.
-	Aircraft* mPlayerAirCraft;
-
-	//! Side aircraft.
-	Aircraft* mEnemyAircraft;
-
-	//! Side aircraft.
-	Aircraft* mEnemyAircraft2;
-
-	//! Scrolling background.
+	XMFLOAT4							mWorldBounds;
+	XMFLOAT2		    				mSpawnPosition;
+	float								mScrollSpeed;
+	Aircraft* mPlayerAircraft;
 	SpriteNode* mBackground;
-	SpriteNode* mBackground2;
-
+	Aircraft* mEnemy;
 };

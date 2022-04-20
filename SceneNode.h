@@ -4,10 +4,6 @@
 #include "Common/UploadBuffer.h"
 #include "Common/GeometryGenerator.h"
 #include "Common/Camera.h"
-#include "DirectXMath.h"
-#include "Category.h"
-#include <vector>
-#include <memory>
 #include "FrameResource.h"
 
 using Microsoft::WRL::ComPtr;
@@ -17,10 +13,11 @@ using namespace DirectX::PackedVector;
 #pragma comment(lib, "d3dcompiler.lib")
 #pragma comment(lib, "D3D12.lib")
 
+// Lightweight structure stores parameters to draw a shape.  This will
+// vary from app-to-app.
 struct RenderItem
 {
 	RenderItem() = default;
-	RenderItem(const RenderItem& rhs) = delete;
 
 	// World matrix of the shape that describes the object's local space
 	// relative to the world space, which defines the position, orientation,
@@ -42,7 +39,7 @@ struct RenderItem
 	MeshGeometry* Geo = nullptr;
 
 	// Primitive topology.
-	D3D12_PRIMITIVE_TOPOLOGY PrimitiveType = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+	D3D12_PRIMITIVE_TOPOLOGY PrimitiveType = D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 
 	// DrawIndexedInstanced parameters.
 	UINT IndexCount = 0;
@@ -50,98 +47,57 @@ struct RenderItem
 	int BaseVertexLocation = 0;
 };
 
-class Game;
-struct Command;
 class State;
+struct Command;
 
-//! Scene node class, initialize a Scenenode using this class.
-class SceneNode 
+class SceneNode
 {
 public:
 	typedef std::unique_ptr<SceneNode> Ptr;
 
+
 public:
-	SceneNode(State* game); //Scenenode Constructor
+	SceneNode(State* state);
 
-	void onCommand(const Command& command, GameTimer dt);
-	virtual unsigned int getCategory() const;
+	void					attachChild(Ptr child);
+	Ptr						detachChild(const SceneNode& node);
 
-	 //! Attaches specified child to parent object
-	void attachChild(Ptr child);
+	void					update(const GameTimer& gt);
+	void					draw() const;
+	void					build();
 
-	//! Detaches specified child from parent object.
-	Ptr detachChild(const SceneNode& node);
+	XMFLOAT3				getWorldPosition() const;
+	void					setPosition(float x, float y, float z);
+	XMFLOAT3				getWorldRotation() const;
+	void					setWorldRotation(float x, float y, float z);
+	XMFLOAT3				getWorldScale() const;
+	void					setScale(float x, float y, float z);
 
-	// !Get world position returns mWorldPosition.
-	XMFLOAT3 getWorldPosition() const;
+	XMFLOAT4X4				getWorldTransform() const;
+	XMFLOAT4X4				getTransform() const;
 
-	//! Sets world position.
-	void setWorldPosition(float x, float y, float z);
+	void					move(float x, float y, float z);
 
-	//! Get world rotation.
-	XMFLOAT3 getWorldRotation() const;
-
-	//! Set world rotation.
-	void setWorldRotation(float x, float y, float z);
-
-	//! Get world scale.
-	XMFLOAT3 getWorldScale() const;
-
-	//! Set world scale.
-	void setWorldScale(float x, float y, float z); 
-
-	//! Gets world orientation. 
-	XMFLOAT4X4 getWorldTransform() const;
-
-	//! Gets transform of object.
-	XMFLOAT4X4 getTransform() const;
-
-	//! Update function of Scenenode.
-	void Update(const GameTimer& dt);
-
-	//! Move function of Scenenode-moves object by velocity.
-	void move(float x, float y, float z);
-	void draw() const; 
-	void build();
+	void					onCommand(const Command& command, const GameTimer& gt);
+	virtual unsigned int	getCategory() const;
 
 private:
-	virtual void updateCurrent(GameTimer dt); 
+	virtual void			updateCurrent(const GameTimer& gt);
+	void					updateChildren(const GameTimer& gt);
 
-	//! Updates children.
-	void updateChildren(const GameTimer dt);
-
-	//! Does nothing.
-	virtual void drawCurrent() const;
-
-	//! Draws children
-	void drawChildren() const;
-
-	//! Does nothing.
-	virtual void buildCurrent();
-
-	//! Builds Children.
-	void buildChildren();
+	virtual void			drawCurrent() const;
+	void					drawChildren() const;
+	virtual void			buildCurrent();
+	void					buildChildren();
 
 protected:
-	//! Reference to game class.
 	State* mState;
-
-	//! Reference to renderer.
 	RenderItem* renderer;
-
 private:
-	//! Children vector
-	std::vector<Ptr> mChildren;
-
-	//! Parent node.
+	XMFLOAT3				mWorldPosition;
+	XMFLOAT3				mWorldRotation;
+	XMFLOAT3				mWorldScaling;
+	std::vector<Ptr>		mChildren;
 	SceneNode* mParent;
-
-	//! World position.
-	XMFLOAT3 mWorldPosition;
-
-	//! World rotation.
-	XMFLOAT3 mWorldRotation;
-
-	//! World scaling.
-	XMFLOAT3 mWorldScaling;
 };
+

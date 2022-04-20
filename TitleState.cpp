@@ -1,57 +1,50 @@
 #include "TitleState.h"
+#include "SpriteNode.h"
 #include "Game.h"
 
-TitleState::TitleState(StateStack& stack, Context context)
-	: State(stack, context) , mSceneGraph(new SceneNode(this))
-	, mShowText(true)
+TitleState::TitleState(StateStack* stack, Context* context)
+    : State(stack, context)
 {
-	mAllRitems.clear();
-	mContext.window->mFrameResources.clear();
-	mContext.window->BuildMaterials();
-	
-	std::unique_ptr<SpriteNode> backgroundSprite = std::make_unique<SpriteNode>(this);
-	backgroundSprite->setWorldPosition(0.0, -10.0, 40);
-	mSceneGraph->attachChild(std::move(backgroundSprite));
+    mAllRitems.clear();
+    mContext->game->ResetFrameResources();
+    mContext->game->BuildMaterials();
 
-	PRINTF("Building frame resources with size: %i\n", mAllRitems.size());
-	context.window->BuildFrameResources((UINT)mAllRitems.size());
+    std::unique_ptr<SpriteNode> backgroundSprite = std::make_unique<SpriteNode>(this);
+    backgroundSprite->SetMatGeoDrawName("Title", "shapeGeo", "box");
+    backgroundSprite->setScale(11.5, 1.0, 10.0);
+    backgroundSprite->setPosition(0, 0, 0);
+    mSceneGraph->attachChild(std::move(backgroundSprite));
+
+    mSceneGraph->build();
+    mContext->game->BuildFrameResources(mAllRitems.size());
+}
+
+TitleState::~TitleState()
+{
 }
 
 void TitleState::draw()
 {
-	mSceneGraph->draw();
-}
-
-void TitleState::buildScene()
-{
-	
+    mSceneGraph->draw();
 }
 
 bool TitleState::update(const GameTimer& gt)
 {
-	mSceneGraph->Update(gt);
-	return true;
+    mSceneGraph->update(gt);
+
+    return true;
 }
 
-bool TitleState::handleEvent(const Event& event)
+bool TitleState::handleEvent(WPARAM btnState)
 {
-	if (event.type == Event::KeyPressed)
-	{
-		requestStackPop();
-		requestStackPush(States::ID::Game);
-	}
-
-	return true;
+    // Any Key
+    //
+    requestStackPop();
+    requestStackPush(States::Game);
+    return true;
 }
 
-void TitleState::ProcessInput()
+bool TitleState::handleRealtimeInput()
 {
-
-}
-
-void TitleState::OnKeyDown(WPARAM btnState)
-{
-	requestStackPop();
-	requestStackPush(States::ID::Game);
-
+    return true;
 }

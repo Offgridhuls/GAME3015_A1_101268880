@@ -1,19 +1,9 @@
-#ifndef BOOK_STATESTACK_H
-#define BOOK_STATESTACK_H
+#pragma once
 
 #include "State.h"
 #include "StateIdentifiers.h"
 
-#include "Common/d3dApp.h"
-#include "Common/MathHelper.h"
-#include "Common/UploadBuffer.h"
-#include "Common/GeometryGenerator.h"
-#include "Common/Camera.h"
-#include "DirectXMath.h"
-#include "Category.h"
 #include <vector>
-#include <memory>
-#include "FrameResource.h"
 #include <utility>
 #include <functional>
 #include <map>
@@ -27,7 +17,6 @@ public:
 		Pop,
 		Clear,
 	};
-
 public:
 	explicit StateStack(State::Context context);
 
@@ -36,8 +25,8 @@ public:
 
 	void update(const GameTimer& gt);
 	void draw();
-	void buildScene();
-	void handleEvent(const Event& event);
+	void handleEvent(WPARAM btnState);
+	void handleRealtimeInput();
 
 	void pushState(States::ID stateID);
 	void popState();
@@ -45,34 +34,37 @@ public:
 
 	bool isEmpty() const;
 
-	std::vector<State::Ptr> mStack;
-
+	XMFLOAT3 getCameraPos();
+	XMFLOAT3 getTargetPos();
+	State* getCurrentState();
 private:
-	State::Ptr createState(States::ID stateID);
+	State::StatePtr createState(States::ID stateID);
 	void applyPendingChanges();
 
 private:
 	struct PendingChange
 	{
-		explicit PendingChange(Action action, States::ID stateID = States::ID::None);
+		explicit			PendingChange(Action action, States::ID stateID = States::None);
 
-		Action action;
-		States::ID stateID;
+		Action				action;
+		States::ID			stateID;
 	};
-private:
-	std::vector<PendingChange> mPendingList;
 
-	State::Context mContext;
-	std::map<States::ID, std::function<State::Ptr()>> mFactories;
+private:
+	std::vector<State::StatePtr>	mStack;
+	std::vector<PendingChange>	mPendingList;
+
+	State::Context	mContext;
+	std::map<States::ID, std::function<State::StatePtr()>> mFactories;
 };
+
 
 template <typename T>
 void StateStack::registerState(States::ID stateID)
 {
 	mFactories[stateID] = [this]()
 	{
-		return State::Ptr(new T(*this, mContext));
+		return State::StatePtr(new T(this, &mContext));
 	};
 }
 
-#endif // BOOK_STATESTACK_H

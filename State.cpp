@@ -1,31 +1,30 @@
 #include "State.h"
 #include "StateStack.h"
+#include "SceneNode.h"
 #include "Game.h"
-State::Context::Context(Game* window, Player* player)
-	: window(window)
-	, player(player)
+
+State::Context::Context(Game* _game, Player* _player)
+	: game(_game),
+	player(_player)
 {
 }
 
-State::State(StateStack& stack, Context context)
-	: mStack(&stack)
+State::State(StateStack* stack, Context* context)
+	: mStack(stack)
 	, mContext(context)
+	, mCameraPos(0.f, 0.f, 0.f)
+	, mSceneGraph(std::make_unique<SceneNode>(this))
 {
 }
 
 State::~State()
 {
-
 }
 
-std::vector<RenderItem*> State::getRenderItems()
-{
-	return mAllRitems;
-}
 
-void State::AddRenderItem(RenderItem* renderItem)
+State::Context* State::getContext() const
 {
-	mAllRitems.push_back(renderItem);
+	return mContext;
 }
 
 void State::requestStackPush(States::ID stateID)
@@ -43,7 +42,4 @@ void State::requestStateClear()
 	mStack->clearStates();
 }
 
-State::Context State::getContext() const
-{
-	return mContext;
-}
+

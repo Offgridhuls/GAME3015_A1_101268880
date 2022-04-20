@@ -3,7 +3,6 @@
 #include "SceneNode.h"
 #include <string>
 
-class State;
 
 //! Aircraft class, inherits Entity.
 class Aircraft : public Entity
@@ -27,7 +26,6 @@ private:
 	//! Sprite of aircraft.
 	std::string mSprite;
 
-	State* mState;
 	//std::vector<RenderItem*> mRitemLayer[(int)RenderLayer::Count];
 
 	 //! Does nothing.

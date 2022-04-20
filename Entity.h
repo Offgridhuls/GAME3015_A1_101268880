@@ -1,37 +1,22 @@
 #pragma once
-#include <iostream>
 #include "SceneNode.h"
-class State;
 
-//! Entity class, inherits Scenenode.
-class Entity : public SceneNode
+class Entity :
+	public SceneNode
 {
 public:
 	//! Entity constructor.
 	Entity(State* state);
+	void				setVelocity(XMFLOAT3 velocity);
+	void				setVelocity(float vx, float vy, float vz);
+	XMFLOAT3			getVelocity() const;
 
-	//! Sets velocity of Entity. 
-	void setVelocity(XMFLOAT3 velocity);
+	void				accelerate(XMFLOAT3 velocity);
+	void				accelerate(float vx, float vy, float vz);
 
-	//! Sets individual velocity float params. (X, Y, Z)
-	void setVelocity(float vx, float vy, float vz);
 
-	//! Sets speed of Entity.
-	void setSpeed(float speed);
+	virtual	void		updateCurrent(const GameTimer& gt);
 
-	//! Returns velocity of Entity.
-	XMFLOAT3 getVelocity() const;
-
-	//! Returns speed of Entity.
-	float getSpeed();
-
-	//! Update the Entity object.
-	virtual void updateCurrent(GameTimer dt);
-
-	//! Variable for velocity.
-	XMFLOAT3 mVelocity;
-
-	//! Variable for speed.
-	float mSpeed;
+public:
+	XMFLOAT3		mVelocity;
 };
-
