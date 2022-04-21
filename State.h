@@ -28,10 +28,14 @@ public:
 		Player* player;
 	};
 public:
+	//!State constructor takes in a stack and a context.
 	State(StateStack* stack, Context* context);
 	virtual ~State();
+	//!Draw function of each state.
 	virtual void draw() = 0;
+	//!Update function of each state.
 	virtual bool update(const GameTimer& gt) = 0;
+	//!Handles btn clicks for a state.
 	virtual bool handleEvent(WPARAM btnState) = 0;
 	virtual bool handleRealtimeInput() = 0;
 
@@ -43,7 +47,9 @@ public:
 	Context* getContext() const;
 
 protected:
+	//!Pushes a state into the stateStack.
 	void requestStackPush(States::ID stateID);
+	//!Removes a state from the stack.
 	void requestStackPop();
 	void requestStateClear();
 

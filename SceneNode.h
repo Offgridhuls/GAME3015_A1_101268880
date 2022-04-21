@@ -57,6 +57,7 @@ public:
 
 
 public:
+	//!Scenenode cosntructor.
 	SceneNode(State* state);
 
 	void					attachChild(Ptr child);
