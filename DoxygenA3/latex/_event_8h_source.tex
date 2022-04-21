@@ -1,0 +1,35 @@
+\hypertarget{_event_8h_source}{}\doxysection{D\+:/\+Sem 6/\+Game Engine Dev II/\+Assignments/a1-\/final/\+A1/\+GAME3015\+\_\+\+A1\+\_\+101268880/\+Event.h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}Keyboard.h"{}}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{keyword}{class }\mbox{\hyperlink{class_event}{Event}}}
+\DoxyCodeLine{5 \{}
+\DoxyCodeLine{6 \textcolor{keyword}{public}:}
+\DoxyCodeLine{7     \textcolor{keyword}{struct }\mbox{\hyperlink{struct_event_1_1_key_event}{KeyEvent}}}
+\DoxyCodeLine{8     \{}
+\DoxyCodeLine{9         Keyboard Keycode;}
+\DoxyCodeLine{10         \textcolor{keywordtype}{bool} alt;}
+\DoxyCodeLine{11         \textcolor{keywordtype}{bool} control;}
+\DoxyCodeLine{12         \textcolor{keywordtype}{bool} shift;}
+\DoxyCodeLine{13         \textcolor{keywordtype}{bool} system;}
+\DoxyCodeLine{14     \};}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16     \textcolor{keyword}{enum} EventType}
+\DoxyCodeLine{17     \{}
+\DoxyCodeLine{18         KeyPressed,}
+\DoxyCodeLine{19         KeyReleased,}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21         Count}
+\DoxyCodeLine{22     \};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     EventType type;}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26     \textcolor{keyword}{union}}
+\DoxyCodeLine{27     \{}
+\DoxyCodeLine{28         KeyEvent key;}
+\DoxyCodeLine{29     \};}
+\DoxyCodeLine{30 \};}
+
+\end{DoxyCode}

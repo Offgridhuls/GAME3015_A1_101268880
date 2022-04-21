@@ -1,0 +1,26 @@
+\hypertarget{_sprite_node_8h_source}{}\doxysection{D\+:/\+Sem 6/\+Game Engine Dev II/\+Assignments/a1-\/final/\+A1/\+GAME3015\+\_\+\+A1\+\_\+101268880/\+Sprite\+Node.h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}Entity.h"{}}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{keyword}{class }\mbox{\hyperlink{class_sprite_node}{SpriteNode}} :}
+\DoxyCodeLine{6     \textcolor{keyword}{public} \mbox{\hyperlink{class_entity}{Entity}}}
+\DoxyCodeLine{7 \{}
+\DoxyCodeLine{8 \textcolor{keyword}{public}:}
+\DoxyCodeLine{10     \mbox{\hyperlink{class_sprite_node_af5884dfe335abba3c8bda2b26a6dddbb}{SpriteNode}}(\mbox{\hyperlink{class_state}{State}}* state);}
+\DoxyCodeLine{11     \mbox{\hyperlink{struct_render_item}{RenderItem}}* mSpriteNodeRitem;}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{14     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_sprite_node_a7ea29073b04223080b140ef1be2919c1}{SetMatGeoDrawName}}(std::string Mat, std::string Geo, std::string DrawName);}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{private}:}
+\DoxyCodeLine{18     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void}        drawCurrent() \textcolor{keyword}{const};}
+\DoxyCodeLine{20     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void}        buildCurrent();}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22     std::string mMat;}
+\DoxyCodeLine{23     std::string mGeo;}
+\DoxyCodeLine{24     std::string mDrawName;}
+\DoxyCodeLine{25 \};}
+
+\end{DoxyCode}

@@ -1,0 +1,22 @@
+\hypertarget{_pause_state_8h_source}{}\doxysection{D\+:/\+Sem 6/\+Game Engine Dev II/\+Assignments/a1-\/final/\+A1/\+GAME3015\+\_\+\+A1\+\_\+101268880/\+Pause\+State.h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}State.h"{}}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{keyword}{class }\mbox{\hyperlink{class_pause_state}{PauseState}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_state}{State}}}
+\DoxyCodeLine{5 \{}
+\DoxyCodeLine{6 \textcolor{keyword}{public}:}
+\DoxyCodeLine{7     \mbox{\hyperlink{class_pause_state}{PauseState}}(\mbox{\hyperlink{class_state_stack}{StateStack}}* stack, \mbox{\hyperlink{struct_state_1_1_context}{Context}}* context);}
+\DoxyCodeLine{8     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_pause_state}{\string~PauseState}}();}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{11     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_pause_state_af720cd23613e9036ce68db8ffd128686}{draw}}()\textcolor{keyword}{override};}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{14     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_pause_state_a903589417a0d5dd50cd41018aff1462f}{update}}(\textcolor{keyword}{const} GameTimer\& gt)\textcolor{keyword}{override};}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{17     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_pause_state_a794591ada5bb46371562b18573e0d72f}{handleEvent}}(WPARAM btnState)\textcolor{keyword}{override};}
+\DoxyCodeLine{18     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} handleRealtimeInput()\textcolor{keyword}{override};}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \};}
+
+\end{DoxyCode}

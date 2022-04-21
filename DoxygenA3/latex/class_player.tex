@@ -1,0 +1,42 @@
+\hypertarget{class_player}{}\doxysection{Player Class Reference}
+\label{class_player}\index{Player@{Player}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_player_a2da5df212d083bbb1460237f34ab0d88}\label{class_player_a2da5df212d083bbb1460237f34ab0d88}} 
+enum \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}} \{ \newline
+{\bfseries Move\+Left}
+, {\bfseries Move\+Right}
+, {\bfseries Move\+Up}
+, {\bfseries Move\+Down}
+, \newline
+{\bfseries Action\+Count}
+ \}
+\begin{DoxyCompactList}\small\item\em Action enums. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_player_affe0cc3cb714f6deb4e62f0c0d3f1fd8}\label{class_player_affe0cc3cb714f6deb4e62f0c0d3f1fd8}} 
+{\bfseries Player} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_player}{Player}} constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_player_abdabbfe5ce0c04acf504ff5054dbcbc1}\label{class_player_abdabbfe5ce0c04acf504ff5054dbcbc1}} 
+void {\bfseries handle\+Event} (\mbox{\hyperlink{class_command_queue}{Command\+Queue}} \&commands)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_event}{Event}} handler for player. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_player_ac520744c103fb38763c8856b4f158627}\label{class_player_ac520744c103fb38763c8856b4f158627}} 
+void {\bfseries handle\+Realtime\+Input} (\mbox{\hyperlink{class_command_queue}{Command\+Queue}} \&commands)
+\begin{DoxyCompactList}\small\item\em Input handler. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_player_a1aebc48270700e3052aaf2653be62bc6}\label{class_player_a1aebc48270700e3052aaf2653be62bc6}} 
+void {\bfseries assign\+Key} (\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}} action, char key)
+\begin{DoxyCompactList}\small\item\em Assigns action to a key. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_player_a6ffaa42ae4d105bd8a775f18ce37c463}\label{class_player_a6ffaa42ae4d105bd8a775f18ce37c463}} 
+char {\bfseries get\+Assigned\+Key} (\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}} action) const
+\begin{DoxyCompactList}\small\item\em Gets assigned key. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_player_a85a3d930fb85ce960820d6a0a101aa5b}\label{class_player_a85a3d930fb85ce960820d6a0a101aa5b}} 
+void {\bfseries remap\+Keys} (int choice)
+\begin{DoxyCompactList}\small\item\em Map keys. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Sem 6/\+Game Engine Dev II/\+Assignments/a1-\/final/\+A1/\+GAME3015\+\_\+\+A1\+\_\+101268880/Player.\+h\item 
+D\+:/\+Sem 6/\+Game Engine Dev II/\+Assignments/a1-\/final/\+A1/\+GAME3015\+\_\+\+A1\+\_\+101268880/Player.\+cpp\end{DoxyCompactItemize}

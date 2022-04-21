@@ -1,0 +1,44 @@
+\hypertarget{_player_8h_source}{}\doxysection{D\+:/\+Sem 6/\+Game Engine Dev II/\+Assignments/a1-\/final/\+A1/\+GAME3015\+\_\+\+A1\+\_\+101268880/\+Player.h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}Command.h"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{keyword}{class }\mbox{\hyperlink{class_command_queue}{CommandQueue}};}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{class }\mbox{\hyperlink{class_player}{Player}}}
+\DoxyCodeLine{8 \{}
+\DoxyCodeLine{9 \textcolor{keyword}{public}:}
+\DoxyCodeLine{11     \mbox{\hyperlink{class_player_affe0cc3cb714f6deb4e62f0c0d3f1fd8}{Player}}();}
+\DoxyCodeLine{13     \textcolor{keywordtype}{void}                    \mbox{\hyperlink{class_player_abdabbfe5ce0c04acf504ff5054dbcbc1}{handleEvent}}(\mbox{\hyperlink{class_command_queue}{CommandQueue}}\& commands);}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{16     \textcolor{keywordtype}{void}                    \mbox{\hyperlink{class_player_ac520744c103fb38763c8856b4f158627}{handleRealtimeInput}}(\mbox{\hyperlink{class_command_queue}{CommandQueue}}\& commands);}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{19     \textcolor{keyword}{enum} \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}}}
+\DoxyCodeLine{20     \{}
+\DoxyCodeLine{21         MoveLeft,}
+\DoxyCodeLine{22         MoveRight,}
+\DoxyCodeLine{23         MoveUp,}
+\DoxyCodeLine{24         MoveDown,}
+\DoxyCodeLine{25         ActionCount}
+\DoxyCodeLine{26     \};}
+\DoxyCodeLine{28     \textcolor{keywordtype}{void}                    \mbox{\hyperlink{class_player_a1aebc48270700e3052aaf2653be62bc6}{assignKey}}(\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}} action, \textcolor{keywordtype}{char} key);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{31     \textcolor{keywordtype}{char}                    \mbox{\hyperlink{class_player_a6ffaa42ae4d105bd8a775f18ce37c463}{getAssignedKey}}(\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}} action) \textcolor{keyword}{const};}
+\DoxyCodeLine{33     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_player_a85a3d930fb85ce960820d6a0a101aa5b}{remapKeys}}(\textcolor{keywordtype}{int} choice);}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{keyword}{private}:}
+\DoxyCodeLine{37     \textcolor{keywordtype}{void}                    initializeActions();}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39     \textcolor{keyword}{static} \textcolor{keywordtype}{bool}             isRealtimeAction(\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}} action);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{keyword}{private}:}
+\DoxyCodeLine{43     std::map<char, Action>                  mKeyBinding;}
+\DoxyCodeLine{45     std::map<Action, Command>               mActionBinding;}
+\DoxyCodeLine{46     std::map<char, bool>                    mKeyFlag;}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \};}
+
+\end{DoxyCode}
